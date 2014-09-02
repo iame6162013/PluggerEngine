@@ -1,7 +1,7 @@
 /**
  * 
  */
-package plugger.view;
+package src.plugger.view;
 
 import java.awt.Container;
 import java.awt.FlowLayout;
