@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
-class ButtonListener implements ActionListener {
+/*class ButtonListener implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent ae) {
@@ -40,42 +40,18 @@ class ButtonListener implements ActionListener {
 		frame.setVisible(true);
 	}
 	
-}
+}*/
 
-/**
- * @author Leander
- *
- */
 public class PluggerFrame extends JFrame {
-
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-
-		// Create the frame.
-		JFrame frame = new JFrame("Plugger");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		JFrame.setDefaultLookAndFeelDecorated(true);
+	public PluggerFrame(){
+		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		this.setResizable(true);
+		this.setUndecorated(true);
+		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
+		this.setLocationRelativeTo(null);
 		
-		// Get content pane
-		Container contentPane = frame.getContentPane();
+		this.add(new HudComp(this));
 		
-		// Create layout.
-		FlowLayout layout = new FlowLayout(FlowLayout.CENTER);
-		contentPane.setLayout(layout);
-		
-		// Add button.
-		JButton button = new JButton("Hi!");
-		contentPane.add(button);
-		
-		// Add event.
-		button.addActionListener(new ButtonListener());
-		
-		// Display frame.
-		frame.setExtendedState(JFrame.MAXIMIZED_BOTH);
-		frame.setLocationRelativeTo(null);
-		frame.setVisible(true);
+		this.setVisible(true);
 	}
-
 }

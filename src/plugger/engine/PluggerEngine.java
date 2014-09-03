@@ -3,8 +3,10 @@
  */
 package src.plugger.engine;
 
+import src.plugger.view.PluggerFrame;
+
 /**
- * @author Leander
+ * @author 
  *
  */
 public class PluggerEngine {
@@ -13,8 +15,8 @@ public class PluggerEngine {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		System.out.println("RAN");
-
+		System.out.println("START");
+		new PluggerFrame();
 	}
 
 }
