@@ -48,13 +48,17 @@ class ButtonListener implements ActionListener {
  */
 public class PluggerFrame extends JFrame {
 
+	public PluggerFrame(String string) {
+		super(string);
+	}
+
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
 
 		// Create the frame.
-		JFrame frame = new JFrame("Plugger");
+		PluggerFrame frame = new PluggerFrame("Plugger");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		JFrame.setDefaultLookAndFeelDecorated(true);
 		
