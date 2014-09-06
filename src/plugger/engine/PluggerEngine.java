@@ -1,30 +1,17 @@
-/**
- * 
- */
 package src.plugger.engine;
 
-import src.plugger.view.PluggerFrame;
-
-<<<<<<< HEAD
 import org.lwjgl.*;
 import org.lwjgl.opengl.*;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL44.*;
 
-/**
- * @author 
- *
- */
-=======
->>>>>>> pr/4
-public class PluggerEngine {
-
+/*public class PluggerEngine{
 	/**
 	 * @param args
 	 */
-	public static void main(String[] args) {
+	//public static void main(String[] args) {
 		// Set up display carefully :P
-		try {
+		/*try {
 			Display.setDisplayMode(Display.getDesktopDisplayMode() );
 			Display.setFullscreen(true);
 			Display.setTitle("Plugger");
@@ -49,6 +36,9 @@ public class PluggerEngine {
 		
 		// Dump all evidence
 		Display.destroy();
+		
+		
+		
 	}
 
-}
+}*/

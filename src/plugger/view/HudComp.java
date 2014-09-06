@@ -57,7 +57,6 @@ public class HudComp extends JPanel implements Runnable{
 		/**main white background*/
 		g.clearRect(0, 0, frame.getWidth(), frame.getHeight());
 		
-		GameRegistry.UpdateHudMess();
 		/**XPBar just used as an image right now*/
 		if(XPBar!=null){
 			g.drawImage(XPBar, frame.getWidth()/2-XPBar.getWidth(frame)*(frame.getWidth()/160), 20,XPBar.getWidth(frame)*(frame.getWidth()/80),XPBar.getHeight(frame)*(frame.getHeight()/80), frame);
@@ -65,6 +64,7 @@ public class HudComp extends JPanel implements Runnable{
 			XPBar=ImageLoader.getImage("assets/Bar.png");
 		}
 		
+		GameRegistry.UpdateHudMess();
 		/**Something to display the Hud*/
 		if (true){
 			g.setColor(Color.BLACK);

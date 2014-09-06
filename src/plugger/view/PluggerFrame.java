@@ -1,12 +1,4 @@
-/**
- * 
- */
 package src.plugger.view;
-
-import java.awt.Container;
-import java.awt.FlowLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.*;
 
@@ -20,14 +12,17 @@ public class PluggerFrame extends JFrame {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-
+		System.out.println("START");
+		frame();
+	}
+	public static void frame(){
 		// Create the frame.
 		PluggerFrame frame = new PluggerFrame("Plugger");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		JFrame.setDefaultLookAndFeelDecorated(true);
+		frame.setResizable(true);
+		//frame.setSize(100, 100);
+		frame.add(new HudComp(frame));
 		
-		this.add(new HudComp(this));
-		
-		this.setVisible(true);
+		frame.setVisible(true);
 	}
 }

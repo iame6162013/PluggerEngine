@@ -1,21 +1,14 @@
 package src.plugger.common;
 
 import java.lang.reflect.Field;
-
-<<<<<<< HEAD:src/plugger/common/GameRegistery.java
-
-// TODO GameRegistery is spelled incorrect, it should be GameRegistry
-public class GameRegistery {
 	/**
 	 * add item to the hud
 	 */
-=======
 public class GameRegistry {
 	
->>>>>>> pr/4:src/plugger/common/GameRegistry.java
 	public static int HudMessMaxID=64;
 	public static String[] HudMessBase= new String[HudMessMaxID];
-	public static Field[] ClassPath=new Field[HudMessMaxID];
+	public static Class[] ClassPath=new Class[HudMessMaxID];
 	public static String[] ClassPathOBJECT=new String[HudMessMaxID];
 	public static String[] HudMess= new String[HudMessMaxID];
 	public static int HudMessID =-1;
@@ -31,7 +24,7 @@ public class GameRegistry {
 	public static void UpdateHudMess(){
 		for(int i=0;i<HudMessMaxID;i++){
 			if(ClassPath[i]!=null){
-				HudMess[i]=HudMessBase[i]+ClassPath[i];
+				try {HudMess[i]=HudMessBase[i]+ClassPath[i].getDeclaredField(ClassPathOBJECT[i]).getInt(null);} catch (IllegalArgumentException e) {e.printStackTrace();} catch (IllegalAccessException e) {e.printStackTrace();} catch (NoSuchFieldException e) {e.printStackTrace();} catch (SecurityException e) {e.printStackTrace();}
 				System.out.println("Updateing HudMesh"+i+"_");
 			}
 		}
@@ -54,29 +47,21 @@ public class GameRegistry {
 	 * add updating item to the hud
 	 *(for fps,position,etc)
 	 */
-	public static void addHudMess(String mess, Class  Classpath,String ClassPathobj) throws NoSuchFieldException {
-		int mess2 = 0;
+	public static void addHudMess(String mess,Class  Classpath,String ClassPathobj){
 		if(mess!= null){
+			Field[] mess2;
 			HudMessID++;
-			if(ClassPath[HudMessID]!=null){
-				try {
-					Field f=Classpath.getDeclaredField(ClassPathOBJECT[HudMessID]);//.getDeclaredField(ClassPath[HudMessID][1]);
-					try {
-						mess2=f.getInt(f);
-						ClassPath[HudMessID+1]=f;
-						ClassPathOBJECT[HudMessID]= ClassPathobj;
-						System.out.println("out");
-					} catch (Exception e) {
-						e.printStackTrace();
-					}
-				} catch (SecurityException e) {
-					e.printStackTrace();
-				}
-				System.out.println("adding Mess to hud:"+mess+" id:"+HudMessID);
-				HudMess[HudMessID]=mess;
-			}else{
-				HudMess[HudMessID]=mess;
+			try {
+				ClassPath[HudMessID]=Classpath;
+				ClassPathOBJECT[HudMessID]=ClassPathobj.toString();
+				
+				//mess2 = ClassPath[HudMessID].getFields();//.getInt(ClassPathOBJECT[HudMessID]);//.getDeclaredField(ClassPath[HudMessID][1]);
+			} catch (Exception e) {
+				e.printStackTrace();
+				System.out.println(ClassPath[HudMessID]+"_"+ClassPathOBJECT[HudMessID]+"_"+HudMessID);
 			}
+			System.out.println("adding Mess to hud:"+mess+" id:"+HudMessID);
+			HudMessBase[HudMessID]=mess;
 		}else{
 			System.out.println("someone is trying to add a null hud Mess");
 		}
@@ -85,7 +70,7 @@ public class GameRegistry {
 		if(mess!= null){
 			System.out.println("adding Bar to hud:"+mess+" id:"+HudMessID);
 			HudMessID++;
-			HudMess[HudMessID]=mess;
+			HudMessBase[HudMessID]=mess;
 		}else{
 			System.out.println("someone is trying to add a null hud Bar");
 		}
