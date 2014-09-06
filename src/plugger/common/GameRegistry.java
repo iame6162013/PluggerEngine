@@ -2,8 +2,6 @@ package src.plugger.common;
 
 import java.lang.reflect.Field;
 
-
-//TODO GameRegistery is spelled incorrect, it should be GameRegistry
 public class GameRegistry {
 	/**
 	 * add item to the hud
