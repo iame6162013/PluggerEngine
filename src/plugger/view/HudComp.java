@@ -15,9 +15,9 @@ public class HudComp extends JPanel implements Runnable{
 	private Thread thread = new Thread(this);
 	private Frame frame;
 	private KeyHandler KeyHandler;
-	public void update(){
+	/*public void update(){
 		System.out.println(fps);
-	}
+	}*/
 	public HudComp(Frame frame){
 		this.frame = frame;
 		this.KeyHandler = new KeyHandler();
@@ -33,7 +33,7 @@ public class HudComp extends JPanel implements Runnable{
 		int frames=0;
 		long secondStart = System.currentTimeMillis();
 		while(true){
-			update();
+			//update();
 			
 			try {
 				Thread.sleep(1000/this.maxFrameRate);
@@ -54,19 +54,23 @@ public class HudComp extends JPanel implements Runnable{
 	}
 	private static Image XPBar=null;
 	public void paintComponent(Graphics g){
+		/**main white background*/
 		g.clearRect(0, 0, frame.getWidth(), frame.getHeight());
+		
+		GameRegistry.UpdateHudMess();
+		/**XPBar just used as an image right now*/
 		if(XPBar!=null){
 			g.drawImage(XPBar, frame.getWidth()/2-XPBar.getWidth(frame)*(frame.getWidth()/160), 20,XPBar.getWidth(frame)*(frame.getWidth()/80),XPBar.getHeight(frame)*(frame.getHeight()/80), frame);
 		}else{
 			XPBar=ImageLoader.getImage("assets/Bar.png");
 		}
 		
-		System.out.println(GameRegistry.HudMessID);
+		/**Something to display the Hud*/
 		if (true){
-		g.setColor(Color.BLACK);
+			g.setColor(Color.BLACK);
+			
 			for (int pointer=0;pointer<=GameRegistry.HudMessID; pointer++){
 				if (GameRegistry.HudMess[pointer]!=null){
-					System.out.println("OUT");
 					g.drawString(GameRegistry.HudMess[pointer], 10, 15+pointer*15);
 				}else{
 					System.out.println("[WARNING]trying to visuallize HudMess, HudMess="+GameRegistry.HudMess[pointer]+"_"+pointer+"_"+GameRegistry.HudMessID);

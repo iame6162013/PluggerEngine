@@ -5,10 +5,6 @@ package src.plugger.engine;
 
 import src.plugger.view.PluggerFrame;
 
-/**
- * @author 
- *
- */
 public class PluggerEngine {
 
 	/**
