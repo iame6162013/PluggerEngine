@@ -3,12 +3,8 @@ package src.plugger.common;
 import java.lang.reflect.Field;
 
 
-/**
- * LEO STAY OUT OF THIS CLASS
- * THIS IS REALLY HARD AND I LIKE
- * DON'T TAKE IT AWAY FROM ME
- */
-public class GameRegistery {
+//TODO GameRegistery is spelled incorrect, it should be GameRegistry
+public class GameRegistry {
 	/**
 	 * add item to the hud
 	 */

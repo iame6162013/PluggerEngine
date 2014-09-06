@@ -9,7 +9,7 @@ import java.awt.event.KeyListener;
 
 import javax.swing.JPanel;
 
-import src.plugger.common.GameRegistery;
+import src.plugger.common.GameRegistry;
 
 public class HudComp extends JPanel implements Runnable{
 	private Thread thread = new Thread(this);
@@ -61,15 +61,15 @@ public class HudComp extends JPanel implements Runnable{
 			XPBar=ImageLoader.getImage("assets/Bar.png");
 		}
 		
-		System.out.println(GameRegistery.HudMessID);
+		System.out.println(GameRegistry.HudMessID);
 		if (true){
 		g.setColor(Color.BLACK);
-			for (int pointer=0;pointer<=GameRegistery.HudMessID; pointer++){
-				if (GameRegistery.HudMess[pointer]!=null){
+			for (int pointer=0;pointer<=GameRegistry.HudMessID; pointer++){
+				if (GameRegistry.HudMess[pointer]!=null){
 					System.out.println("OUT");
-					g.drawString(GameRegistery.HudMess[pointer], 10, 15+pointer*15);
+					g.drawString(GameRegistry.HudMess[pointer], 10, 15+pointer*15);
 				}else{
-					System.out.println("[WARNING]trying to visuallize HudMess, HudMess="+GameRegistery.HudMess[pointer]+"_"+pointer+"_"+GameRegistery.HudMessID);
+					System.out.println("[WARNING]trying to visuallize HudMess, HudMess="+GameRegistry.HudMess[pointer]+"_"+pointer+"_"+GameRegistry.HudMessID);
 				}
 			}
 		}
