@@ -5,6 +5,7 @@ package src.plugger.engine;
 
 import src.plugger.view.PluggerFrame;
 
+<<<<<<< HEAD
 import org.lwjgl.*;
 import org.lwjgl.opengl.*;
 import org.lwjgl.input.Keyboard;
@@ -14,6 +15,8 @@ import org.lwjgl.opengl.GL44.*;
  * @author 
  *
  */
+=======
+>>>>>>> pr/4
 public class PluggerEngine {
 
 	/**

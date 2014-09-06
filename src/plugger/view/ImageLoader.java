@@ -14,6 +14,8 @@ public class ImageLoader {
 			//tempImage = Toolkit.getDefaultToolkit().getImage(imageURL);
 		}catch(Exception e){
 			System.out.println("can't load image -"+ e.getMessage());
+			
+			System.out.println("THIS FILE ONLY WORKS WITH IAME I'M AWARE OF THIS");
 		}
 		return tempImage;
 	}
