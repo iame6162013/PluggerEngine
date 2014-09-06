@@ -1,7 +1,9 @@
 /**
  * 
  */
-package plugger.engine;
+package src.plugger.engine;
+
+import src.plugger.view.PluggerFrame;
 
 import org.lwjgl.*;
 import org.lwjgl.opengl.*;
@@ -9,7 +11,7 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL44.*;
 
 /**
- * @author Leander
+ * @author 
  *
  */
 public class PluggerEngine {
