@@ -11,7 +11,7 @@ public class GameRegistry {
 	public static Class[] ClassPath=new Class[HudMessMaxID];
 	public static String[] ClassPathOBJECT=new String[HudMessMaxID];
 	public static String[] HudMess= new String[HudMessMaxID];
-	public static int HudMessID =-1;
+	public static int HudMessID =0;
 	public static void rebuildHudMessNum(){
 		HudMessID=0;
 		for (int i=0;HudMess[i]!=null; i++){
@@ -49,13 +49,10 @@ public class GameRegistry {
 	 */
 	public static void addHudMess(String mess,Class  Classpath,String ClassPathobj){
 		if(mess!= null){
-			Field[] mess2;
 			HudMessID++;
 			try {
 				ClassPath[HudMessID]=Classpath;
 				ClassPathOBJECT[HudMessID]=ClassPathobj.toString();
-				
-				//mess2 = ClassPath[HudMessID].getFields();//.getInt(ClassPathOBJECT[HudMessID]);//.getDeclaredField(ClassPath[HudMessID][1]);
 			} catch (Exception e) {
 				e.printStackTrace();
 				System.out.println(ClassPath[HudMessID]+"_"+ClassPathOBJECT[HudMessID]+"_"+HudMessID);

@@ -1,28 +1,48 @@
 package src.plugger.view;
 
-import javax.swing.*;
+import org.lwjgl.LWJGLException;
+import org.lwjgl.opengl.Display;
+import org.lwjgl.opengl.DisplayMode;
 
-public class PluggerFrame extends JFrame {
+import src.plugger.common.GameLoop;
+import static org.lwjgl.opengl.GL11.*;
 
-	public PluggerFrame(String string) {
-		super(string);
-	}
+public class PluggerFrame {
 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
 		System.out.println("START");
-		frame();
+		initDisplay();
+		initGL();
+		GameLoop.gameloop();
+		System.out.println("out");
+		cleanUp();
 	}
-	public static void frame(){
-		// Create the frame.
-		PluggerFrame frame = new PluggerFrame("Plugger");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setResizable(true);
-		//frame.setSize(100, 100);
-		frame.add(new HudComp(frame));
+	
+	private static void initGL(){
+		glMatrixMode(GL_PROJECTION);
+		glLoadIdentity();
+		glOrtho(0,Display.getWidth(),0,Display.getHeight(),-1,1);
+		glMatrixMode(GL_MODELVIEW);
 		
-		frame.setVisible(true);
+		glClearColor(0,0,0,1);
+		
+		glDisable(GL_DEPTH_TEST);
+	}
+	
+	private static void cleanUp(){
+		Display.destroy();
+	}
+	public static void initDisplay(){
+		try {
+			Display.setDisplayMode(new DisplayMode(800,600));
+			Display.setTitle("Display example");
+			Display.create();
+			Display.setVSyncEnabled(true);
+		} catch (LWJGLException e) {
+			e.printStackTrace();
+		}
 	}
 }

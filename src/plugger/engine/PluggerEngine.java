@@ -1,5 +1,5 @@
 package src.plugger.engine;
-
+/*
 import org.lwjgl.*;
 import org.lwjgl.opengl.*;
 import org.lwjgl.input.Keyboard;
@@ -22,13 +22,13 @@ import org.lwjgl.opengl.GL44.*;
 			System.exit(0);
 		}
 		
-		// TODO Init OpenGL
+		// TODOo Init OpenGL
 		
 		
 		// Main render loop
 		while (!Display.isCloseRequested() && !Keyboard.isKeyDown(Keyboard.KEY_ESCAPE)) {
 			
-			// TODO Render OpenGL
+			// TODOo Render OpenGL
 			
 			
 			Display.update();
