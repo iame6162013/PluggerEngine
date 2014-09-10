@@ -4,7 +4,6 @@ import org.lwjgl.opengl.Display;
 import static org.lwjgl.opengl.GL11.*;
 
 import src.plugger.common.GameLoop;
-import src.plugger.common.GetInput;
 import src.plugger.view.HudElements;
 import src.plugger.view.glRenderer;
 
@@ -80,8 +79,9 @@ public class GameLoop{
 		glClear(GL_COLOR_BUFFER_BIT);
 		glLoadIdentity();
 		
-		glRenderer.drawRect(0, 0, 64, 64, 0);
-		glRenderer.drawRect(80, 80, 86, 86, 0);
+		
+		glRenderer.drawRect(0, 0, 86, 86);
+		glRenderer.drawRect(400, 400, 64, 64, 0);
 		
 		Display.update();
 	}
