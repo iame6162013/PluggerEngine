@@ -41,6 +41,7 @@ public class PluggerFrame {
 			Display.setTitle("Display example");
 			Display.create();
 			Display.setVSyncEnabled(true);
+			Display.sync(20);
 		} catch (LWJGLException e) {
 			e.printStackTrace();
 		}
