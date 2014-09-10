@@ -9,7 +9,7 @@ public class ImageLoader {
 	public static Image getImage(String path){
 		Image tempImage=null;
 		try{
-			//tempImage = ImageIO.read(new File("D:/Users/Aron/Desktop/Savy Safe Map p/SavE/prog/PROJECTS/lilGame/lilGame/src/resources/"+path));
+			tempImage = ImageIO.read(new File("D:/Users/Aron/Desktop/Savy Safe Map p/SavE/prog/PROJECTS/lilGame/lilGame/src/resources/"+path));
 		}catch(Exception e){
 			System.out.println("can't load image -"+ e.getMessage());
 			
