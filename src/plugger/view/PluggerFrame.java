@@ -15,21 +15,11 @@ public class PluggerFrame {
 	public static void main(String[] args) {
 		System.out.println("START");
 		initDisplay();
-		initGL();
+		glRenderer.setupOpenGL();
 		GameLoop.gameloop();
 		System.out.println("out");
 		cleanUp();
-	}
-	
-	private static void initGL(){
-		glMatrixMode(GL_PROJECTION);
-		glLoadIdentity();
-		glOrtho(0,Display.getWidth(),0,Display.getHeight(),-1,1);
-		glMatrixMode(GL_MODELVIEW);
-		
-		glClearColor(0,0,0,1);
-		
-		glDisable(GL_DEPTH_TEST);
+		glRenderer.cleanUp();
 	}
 	
 	private static void cleanUp(){
@@ -38,8 +28,13 @@ public class PluggerFrame {
 	public static void initDisplay(){
 		try {
 			Display.setDisplayMode(new DisplayMode(800,600));
-			Display.setTitle("Display example");
-			Display.create();
+			Display.setTitle("Display");
+			PixelFormat pixelFormat = new PixelFormat();
+			ContextAttribs contextAtrributes = new ContextAttribs(3, 2)
+				.withForwardCompatible(true)
+				.withProfileCore(true);
+		
+			Display.create(pixelFormat, contextAtrributes);
 			Display.setVSyncEnabled(true);
 			Display.sync(20);
 		} catch (LWJGLException e) {

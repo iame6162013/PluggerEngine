@@ -5,40 +5,43 @@ import static org.lwjgl.opengl.GL11.GL_QUADS;
 import org.lwjgl.opengl.GL11;
 
 public class glRenderer {
-	public static void drawRect(float x, float y, float sx, float sy, float rot){
-		GL11.glColor3f(0.25f,0f,0.75f);
-		//glClearDepth(1);
-		GL11.glPushMatrix();
-		sx /=2;
-		sy /=2;
-		GL11.glTranslatef(x,y,0);
-		//glRotatef(rot,0,0,1);
-		GL11.glBegin(GL_QUADS);{
-			GL11.glVertex2f(-sx,-sy);
-			GL11.glVertex2f(-sx,sy);
-			GL11.glVertex2f(sx,sy);
-			GL11.glVertex2f(sx,-sy);
-			
-		}
-		GL11.glEnd();
-		GL11.glPopMatrix();
+	
+	/** Draws vertices to the screen
+	 * @param vertices vertices to draw, each 3 floats define 1 point in space 
+	 * @author Leander*/
+	public static void drawVertices(float[] vertices){
+		
+	}
+
+	/** Setup an OpenGL context with API version 3.2 */
+	public void setupOpenGL() {
+		
+		// Setup an XNA like background color
+		GL11.glClearColor(0.4f, 0.6f, 0.9f, 0f);
+		
+		// Map the internal OpenGL coordinate system to the entire screen
+		GL11.glViewport(0, 0, 800, 600);
+		
+		this.exitOnGLError("Error in glRenderer.setupOpenGL");
 	}
 	
-	public static void drawRect(float x, float y, float sx, float sy){
-		GL11.glColor3f(0.25f,0f,0.75f);
-		GL11.glPushMatrix();
-		sx /=2;
-		sy /=2;
-		GL11.glTranslatef(x,y,0);
-		GL11.glBegin(GL_QUADS);{
-			GL11.glVertex2f(-sx,-sy);
-			GL11.glVertex2f(-sx,sy);
-			GL11.glVertex2f(sx,sy);
-			GL11.glVertex2f(sx,-sy);
+	/** Cleans up the memory! */
+	public void cleanUp() {
+		
+	}
+	
+	/** Exits on GL error 
+	 * @param errorMessage the error message to display */
+	public void exitOnGLError(String errorMessage) {
+		int errorValue = GL11.glGetError();
+		
+		if (errorValue != GL11.GL_NO_ERROR) {
+			String errorString = GLU.gluErrorString(errorValue);
+			System.err.println("ERROR - " + errorMessage + ": " + errorString);
 			
+			if (Display.isCreated()) Display.destroy();
+			System.exit(-1);
 		}
-		GL11.glEnd();
-		GL11.glPopMatrix();
 	}
 	/*
 	 * while (!Display.isCloseRequested()){
