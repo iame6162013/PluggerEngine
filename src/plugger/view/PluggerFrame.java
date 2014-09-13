@@ -38,7 +38,7 @@ public class PluggerFrame {
 	public static void initDisplay(){
 		try {
 			Display.setDisplayMode(new DisplayMode(800,600));
-			Display.setTitle("Display example");
+			Display.setTitle("Plugger");
 			Display.create();
 			Display.setVSyncEnabled(true);
 			Display.sync(20);
