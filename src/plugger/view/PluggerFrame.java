@@ -27,6 +27,7 @@ public class PluggerFrame {
 	public static void initDisplay(){
 		try {
 			Display.setDisplayMode(new DisplayMode(800,600));
+<<<<<<< HEAD
 			Display.setTitle("Display");
 			PixelFormat pixelFormat = new PixelFormat();
 			ContextAttribs contextAtrributes = new ContextAttribs(3, 2)
@@ -35,7 +36,11 @@ public class PluggerFrame {
 		
 			Display.create(pixelFormat, contextAtrributes);
 			Display.setVSyncEnabled(true);
+=======
+			Display.setTitle("Plugger");
+>>>>>>> FETCH_HEAD
 			Display.sync(20);
+			Display.create();
 		} catch (LWJGLException e) {
 			e.printStackTrace();
 		}
