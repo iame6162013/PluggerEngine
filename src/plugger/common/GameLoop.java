@@ -21,7 +21,7 @@ public class GameLoop{
 	static long tickStart = System.currentTimeMillis();
 	
 	
-	
+	/**Main game loop */
 	public static void gameloop() {
 		
 		HudElements.Hud();

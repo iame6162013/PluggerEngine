@@ -19,7 +19,6 @@ public class PluggerFrame {
 		GameLoop.gameloop();
 		System.out.println("out");
 		cleanUp();
-		glRenderer.cleanUp();
 	}
 	
 	private static void cleanUp(){
