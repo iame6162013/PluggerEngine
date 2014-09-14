@@ -1,7 +1,15 @@
 package src.plugger.common;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.nio.file.Path;
+
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
+import org.newdawn.slick.opengl.Texture;
+import org.newdawn.slick.opengl.TextureLoader;
+
 import static org.lwjgl.opengl.GL11.*;
 
 import src.plugger.client.renderer.Tessellator;
@@ -26,7 +34,21 @@ public class GameLoop{
 	
 	static Camera cam=new Camera(70,(float)Display.getWidth()/(float)Display.getHeight(),0.3f,1000);
 	
+	public static Texture LoadTexture(String Key){
+		try {
+		return	TextureLoader.getTexture("png", new FileInputStream(new File("resources/assets/"+Key+".png")));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	static Texture Marble = LoadTexture("MarbleTilesFancy");
+	static Texture Bar = LoadTexture("Bar");
+	
 	public static void gameloop() {
+		
+		
+		
 		
 		HudElements.Hud();
 		
@@ -134,44 +156,47 @@ public class GameLoop{
 			
 			glTranslatef(0,0,-10);
 			glRotatef(x,1,1,0);
+			
+			Bar.bind();
+			
 			glBegin(GL_QUADS);{
 					
 					//BackFace
 					glColor3f(1.0f,0.6f,1f);
-					glVertex3f(-1,-1,-1);
-					glVertex3f(-1,1,-1);
-					glVertex3f(1,1,-1);
-					glVertex3f(1,-1,-1);
+					glTexCoord2f(0,0);glVertex3f(-1,-1,-1);
+					glTexCoord2f(0,1);glVertex3f(-1,1,-1);
+					glTexCoord2f(1,1);glVertex3f(1,1,-1);
+					glTexCoord2f(1,0);glVertex3f(1,-1,-1);
 					//FrontFace
 					glColor3f(1.0f,0.5f,1f);
-					glVertex3f(-1,-1,1);
-					glVertex3f(-1,1,1);
-					glVertex3f(1,1,1);
-					glVertex3f(1,-1,1);
+					glTexCoord2f(0,0);glVertex3f(-1,-1,1);
+					glTexCoord2f(0,1);glVertex3f(-1,1,1);
+					glTexCoord2f(1,1);glVertex3f(1,1,1);
+					glTexCoord2f(1,0);glVertex3f(1,-1,1);
 					//LeftFace
 					glColor3f(1.0f,0.1f,1f);
-					glVertex3f(-1,-1,-1);
-					glVertex3f(-1,-1,1);
-					glVertex3f(-1,1,1);
-					glVertex3f(-1,1,-1);
+					glTexCoord2f(0,0);glVertex3f(-1,-1,-1);
+					glTexCoord2f(0,1);glVertex3f(-1,-1,1);
+					glTexCoord2f(1,1);glVertex3f(-1,1,1);
+					glTexCoord2f(1,0);glVertex3f(-1,1,-1);
 					//RightFace
 					glColor3f(1.0f,0.2f,1f);
-					glVertex3f(1,-1,-1);
-					glVertex3f(1,-1,1);
-					glVertex3f(1,1,1);
-					glVertex3f(1,1,-1);
+					glTexCoord2f(0,0);glVertex3f(1,-1,-1);
+					glTexCoord2f(0,1);glVertex3f(1,-1,1);
+					glTexCoord2f(1,1);glVertex3f(1,1,1);
+					glTexCoord2f(1,0);glVertex3f(1,1,-1);
 					//BottomFace
 					glColor3f(1.0f,0.3f,1f);
-					glVertex3f(-1,-1,-1);
-					glVertex3f(1,-1,-1);
-					glVertex3f(1,-1,1);
-					glVertex3f(-1,-1,1);
+					glTexCoord2f(0,0);glVertex3f(-1,-1,-1);
+					glTexCoord2f(0,1);glVertex3f(1,-1,-1);
+					glTexCoord2f(1,1);glVertex3f(1,-1,1);
+					glTexCoord2f(1,0);glVertex3f(-1,-1,1);
 					//TopFace
 					glColor3f(1.0f,0.4f,1f);
-					glVertex3f(-1,1,-1);
-					glVertex3f(1,1,-1);
-					glVertex3f(1,1,1);
-					glVertex3f(-1,1,1);
+					glTexCoord2f(0,0);glVertex3f(-1,1,-1);
+					glTexCoord2f(0,1);glVertex3f(1,1,-1);
+					glTexCoord2f(1,1);glVertex3f(1,1,1);
+					glTexCoord2f(1,0);glVertex3f(-1,1,1);
 					
 			}
 			glEnd();

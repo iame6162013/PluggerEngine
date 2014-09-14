@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-<<<<<<< HEAD
-	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="src" path="lib"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.launching.macosx.MacOSXType/Java SE 6 (MacOS X Default)"/>
-	<classpathentry kind="lib" path="/Users/Leander/Development/java/workspace/PluggerEngine/lib/lwjgl/lwjgl.jar">
+	<classpathentry excluding="lib/lwjgl/native/windows/" kind="src" path=""/>
+	<classpathentry kind="lib" path="lib/lwjgl/lwjgl.jar">
 		<attributes>
-			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="/Users/Leander/Development/java/workspace/PluggerEngine/lib/lwjgl/native/macosx"/>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="PluggerEngine/lib/lwjgl/native/windows"/>
 		</attributes>
 	</classpathentry>
-=======
-	<classpathentry kind="src" path=""/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
->>>>>>> pr/2
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/J2SE-1.5"/>
+	<classpathentry kind="lib" path="lib/lwjgl/lwjgl_util.jar"/>
+	<classpathentry kind="lib" path="D:/Users/Aron/Desktop/Savy Safe Map p/SavE/prog/PROJECTS/PluggerEngine/PluggerEngine/lib/slick-util.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
