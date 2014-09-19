@@ -15,12 +15,49 @@ import static org.lwjgl.opengl.GL11.glTexCoord2f;
 import static org.lwjgl.opengl.GL11.glTranslatef;
 import static org.lwjgl.opengl.GL11.glVertex3f;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+
 import org.lwjgl.input.Keyboard;
+import org.lwjgl.opengl.Display;
+import org.newdawn.slick.opengl.Texture;
+import org.newdawn.slick.opengl.TextureLoader;
+
+import src.plugger.view.Camera;
 
 public class renderer {
 	
+	private static Camera cam=new Camera(70,(float)Display.getWidth()/(float)Display.getHeight(),0.3f,1000);
+	private static int x=0;
 	
-	public static render(){
+	
+	
+	
+	
+	
+	
+	public static Texture LoadTexture(String Key){
+		try {
+		return	TextureLoader.getTexture("png", new FileInputStream(new File("resources/assets/"+Key+".png")));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	
+	
+	
+	
+	static Texture Marble = LoadTexture("MarbleTilesFancy");
+	static Texture Bar = LoadTexture("Bar");
+	
+	
+	
+	
+	
+	public static void render(){
 		boolean forward = Keyboard.isKeyDown(Keyboard.KEY_W) || Keyboard.isKeyDown(Keyboard.KEY_UP);
 		boolean backward = Keyboard.isKeyDown(Keyboard.KEY_S) || Keyboard.isKeyDown(Keyboard.KEY_DOWN);
 		boolean left = Keyboard.isKeyDown(Keyboard.KEY_A);
@@ -60,14 +97,17 @@ public class renderer {
 		glPushMatrix();
 			
 			glTranslatef(0,0,-10);
-			glRotatef(x,1,1,0);
 			
-			Bar.bind();
+			glRotatef(x,0,1,0);
+			
+			
 			
 			glBegin(GL_QUADS);{
 					
-					float min=1;
-					float max=0;
+					float min=-0.5f;
+					float max=0.5f;
+					
+					Marble.bind();
 					
 					//BackFace
 					glColor3f(max,0.6f,max);
@@ -82,7 +122,7 @@ public class renderer {
 					glTexCoord2f(max,max);glVertex3f(max,max,max);
 					glTexCoord2f(max,0);glVertex3f(max,min,max);
 					//LeftFace
-					glColor3f(max,0.4f,max);
+					glColor3f(max,0.8f,max);
 					glTexCoord2f(0,0);glVertex3f(min,min,min);
 					glTexCoord2f(0,max);glVertex3f(min,min,max);
 					glTexCoord2f(max,max);glVertex3f(min,max,max);
@@ -96,7 +136,7 @@ public class renderer {
 					//BottomFace
 					glColor3f(max,0.3f,max);
 					glTexCoord2f(0,0);glVertex3f(min,min,min);
-					glTexCoord2f(0,max);glVertex3f(0,min,min);
+					glTexCoord2f(0,max);glVertex3f(max,min,min);
 					glTexCoord2f(max,max);glVertex3f(max,min,max);
 					glTexCoord2f(max,0);glVertex3f(min,min,max);
 					//TopFace
@@ -109,6 +149,7 @@ public class renderer {
 			}
 			glEnd();
 		glPopMatrix();
+		x+=4f;
 	}
 	
 	

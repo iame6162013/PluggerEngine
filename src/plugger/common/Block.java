@@ -12,9 +12,6 @@ public abstract class Block {
 	protected float sz;
 	
 	abstract void update();
-	public void renderer(){
-		glRenderer.drawRect(10, 10, 50, 50);
-	}
 	public float getX(){
 		return x;
 	}

@@ -22,13 +22,13 @@ public class Tessellator{
 		
 		
 	}
-	
+	/*
 	public static void addHudElement(int x, int y, int sizeX, int sizeY) {
 		glRenderer.drawRect(x, y, sizeX, sizeY, 0);
 	}
 	public static void addHudElementWithRot(int x, int y, int sizeX, int sizeY,int rot) {
 		glRenderer.drawRect(x, y, sizeX, sizeY, 0);
-	}
+	}*/
 	
 	
 }

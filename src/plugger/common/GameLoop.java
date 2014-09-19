@@ -32,26 +32,9 @@ public class GameLoop{
 	static long tickStart = System.currentTimeMillis();
 	static float x=0;
 	
-	static Camera cam=new Camera(70,(float)Display.getWidth()/(float)Display.getHeight(),0.3f,1000);
 	
-<<<<<<< HEAD
 	/**Main game loop */
-=======
-	public static Texture LoadTexture(String Key){
-		try {
-		return	TextureLoader.getTexture("png", new FileInputStream(new File("resources/assets/"+Key+".png")));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		return null;
-	}
-	static Texture Marble = LoadTexture("MarbleTilesFancy");
-	static Texture Bar = LoadTexture("Bar");
-	
->>>>>>> FETCH_HEAD
 	public static void gameloop() {
-		
-		
 		
 		
 		HudElements.Hud();
@@ -123,12 +106,10 @@ public class GameLoop{
 		
 		
 		
+		renderer.render();
 		
 		
 		
-		
-		
-		x+=4f;
 		Display.update();
 	}
 	/**EVERY SECOND OPERATIONS*/
