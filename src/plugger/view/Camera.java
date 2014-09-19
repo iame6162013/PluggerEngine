@@ -48,9 +48,10 @@ public class Camera {
 	}
 	
 	public void useView(){
-		glRotatef(rx,1,0,0);
-		glRotatef(ry,0,1,0);
-		glRotatef(rz,0,0,1);
+		//glTranslatef(-x,-y,-z);
+		/*glRotatef(rx,1f,0f,0f);
+		glRotatef(ry,0f,1f,0f);
+		glRotatef(rz,0f,0f,1f);*/
 		glTranslatef(x,y,z);
 	}
 	
@@ -96,13 +97,23 @@ public class Camera {
 	public void setRZ(float rz){
 		this.ry=rz;
 	}
-	public void move(float amt, float dir){
-	z += amt * Math.sin(Math.toRadians(ry + 90 * dir));
-	x += amt * Math.cos(Math.toRadians(ry + 90 * dir));
+	public void move(float amtX,float amtY,float amtZ, float dir){
+	
+	x += amtX * Math.cos(Math.toRadians(rx +90* dir));
+	y += amtY * Math.cos(Math.toRadians(ry +90* dir));
+	z += amtZ * Math.sin(Math.toRadians(rz +90* dir));
 	}
 	public void rotateY(float amt){
-	System.out.println(ry);
-	ry += amt;
+		System.out.println(ry);
+		ry += amt;
+	}
+	public void rotateX(float amt){
+		System.out.println(rx);
+		rz += amt;
+	}
+	public void rotateZ(float amt){
+		System.out.println(rz);
+		rx += amt;
 	}
 	
 	
