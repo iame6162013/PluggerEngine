@@ -1,6 +1,5 @@
 package src.plugger.view;
 import java.awt.Image;
-import java.awt.Toolkit;
 import java.io.File;
 
 import javax.imageio.ImageIO;

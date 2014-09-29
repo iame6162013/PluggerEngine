@@ -12,11 +12,9 @@ import org.newdawn.slick.opengl.TextureLoader;
 
 import static org.lwjgl.opengl.GL11.*;
 
-import src.plugger.client.renderer.Tessellator;
 import src.plugger.common.GameLoop;
-import src.plugger.view.Camera;
 import src.plugger.view.HudElements;
-import src.plugger.view.glRenderer;
+import src.plugger.world.chunk.chunk;
 
 public class GameLoop{
 	private static final int maxFrameRate = 50;
@@ -84,31 +82,11 @@ public class GameLoop{
 	
 	/**EVERY TICK OPERATIONS*/
 	private static void updateTick(){
-		
+		chunk.getBlockInChunk(0, 0, 0);
 	}
 	/**EVERY FRAME OPERATIONS*/
 	private static void updateFrame(){
-		/*glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		glLoadIdentity();
-		
-		
-		//glRenderer.drawRect(0, 0, 86, 86);
-		//glRenderer.drawRect(400, 400, 64, 64, 0);
-		
-		
-		Tessellator.addHudElement(100,100,50,100);
-		
-		Display.update();*/
-		
-		
-		
-		
-		
-		
-		
-		renderer.render();
-		
-		
+		renderer.draw();
 		
 		Display.update();
 	}

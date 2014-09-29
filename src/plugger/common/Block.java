@@ -1,7 +1,5 @@
 package src.plugger.common;
 
-import src.plugger.view.glRenderer;
-
 public abstract class Block {
 	protected float x;
 	protected float y;

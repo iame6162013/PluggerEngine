@@ -8,9 +8,9 @@ public class Camera {
 	private float x;
 	private float y;
 	private float z;
-	private float rx;
-	private float ry;
-	private float rz;
+	private float yaw;
+	private float pitch;
+	private float roll;
 	
 	private float fov;
 	private float aspect;
@@ -22,9 +22,9 @@ public class Camera {
 		x=0;
 		y=0;
 		z=0;
-		rx=0;
-		ry=0;
-		rz=0;
+		yaw=0;
+		pitch=0;
+		roll=0;
 		
 		System.out.println("out");
 		
@@ -42,16 +42,22 @@ public class Camera {
 		gluPerspective(fov,aspect,nearClip,farClip);
 		glMatrixMode(GL_MODELVIEW);
 		
+		glEnable(GL_CULL_FACE);
+        glCullFace(GL_BACK);
+		
 		glEnable(GL_DEPTH_TEST);
 		glEnable(GL_TEXTURE_2D);
 		
 	}
 	
 	public void useView(){
-		//glTranslatef(-x,-y,-z);
-		/*glRotatef(rx,1f,0f,0f);
-		glRotatef(ry,0f,1f,0f);
-		glRotatef(rz,0f,0f,1f);*/
+		//glRotatef(rx,1f,0f,0f);
+		//glRotatef(ry,0f,1f,0f);
+		//glRotatef(rz,0f,0f,1f);
+		
+		glRotatef(pitch,1.0f,0.0f,0.0f);
+		glRotatef(yaw,0.0f,1.0f,0.0f);
+		glRotatef(roll,0.0f,0.0f,1.0f);
 		glTranslatef(x,y,z);
 	}
 	
@@ -76,44 +82,62 @@ public class Camera {
 	public void setZ(float z){
 		this.z=z;
 	}
-	public float getRX(){
-		return x;
+	public float yaw(){
+		return yaw;
 		
 	}
-	public float getRY(){
-		return y;
+	public float pitch(){
+		return pitch;
 		
 	}
-	public float getRZ(){
-		return z;
+	public float roll(){
+		return roll;
 		
 	}
-	public void setRX(float rx){
-		this.rx=rx;
+	public void setYaw(float yaw){
+		this.yaw=yaw;
 	}
-	public void setRY(float ry){
-		this.ry=ry;
+	public void setPitch(float pitch){
+		this.pitch=pitch;
 	}
-	public void setRZ(float rz){
-		this.ry=rz;
+	public void setRoll(float roll){
+		this.roll=roll;
 	}
-	public void move(float amtX,float amtY,float amtZ, float dir){
 	
-	x += amtX * Math.cos(Math.toRadians(rx +90* dir));
-	y += amtY * Math.cos(Math.toRadians(ry +90* dir));
-	z += amtZ * Math.sin(Math.toRadians(rz +90* dir));
+	
+	
+	public void move(float amt){
+	//LEFT&RIGHT
+	x += amt * Math.sin(Math.toRadians(-yaw));
+	//FORWARD&BACK
+	z += amt * Math.sin(Math.toRadians(yaw+90));
+	//UP&DOWN
+	y += amt * Math.cos(Math.toRadians(-pitch+90));
 	}
+	public void moveYaw(float amt, float yaw){
+		//LEFT&RIGHT
+		x += amt * Math.sin(Math.toRadians(this.yaw+yaw));
+		//FORWARD&BACK
+		z += amt * Math.sin(Math.toRadians(this.yaw-yaw+90));
+	}
+	public void moveY(float amt){
+		//UP&DOWN
+		y += amt;
+	}
+	
+	
+	
 	public void rotateY(float amt){
-		System.out.println(ry);
-		ry += amt;
+		System.out.println(pitch+"pitch");
+		pitch += amt;
 	}
 	public void rotateX(float amt){
-		System.out.println(rx);
-		rz += amt;
+		System.out.println(yaw+"yaw");
+		yaw += amt;
 	}
 	public void rotateZ(float amt){
-		System.out.println(rz);
-		rx += amt;
+		System.out.println(roll+"roll");
+		roll += amt;
 	}
 	
 	
