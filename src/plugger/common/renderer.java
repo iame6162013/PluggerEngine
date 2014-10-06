@@ -28,7 +28,9 @@ import org.newdawn.slick.opengl.TextureLoader;
 import src.plugger.block.block;
 import src.plugger.client.renderer.Tessellator;
 import src.plugger.view.Camera;
+import src.plugger.world.PossitionId;
 import src.plugger.world.world;
+import src.plugger.world.chunk.Chunk;
 
 public class renderer {
 	
@@ -112,7 +114,7 @@ public class renderer {
 		
 		
 		
-		Tessellator tessellator = Tessellator.instance;
+		/*Tessellator tessellator = Tessellator.instance;
 		tessellator.startDrawingQuads();{
 		
 		glTranslatef(0,0,-2);
@@ -122,13 +124,64 @@ public class renderer {
 		tessellator.addVertexWithUV(1,1,0,1,0);
 		tessellator.addVertexWithUV(1,0, 0,0,0);
 		}
-		tessellator.draw();
+		tessellator.draw();*/
 		
-		glPushMatrix();
+		/*glPushMatrix();
 	    glTranslatef(0, 0, -4);
 	    Sphere s = new Sphere();
 	    s.draw(0.9f, 4, 4);
-	    glPopMatrix();
+	    glPopMatrix();*/
+		
+		
+		Chunk chunk = Chunk.instance;
+		
+		for(int i=0;i<world.ChunkLoadRange(); i++){
+			for(int j=0;j<world.ChunkLoadRange(); j++){
+				for(int k=0;k<world.ChunkLoadRange(); k++){
+					
+					
+					int x2=0;
+					int y2=0;
+					int z2=0;
+					for (int x=0; x<world.chunkArray[i][j][k].getChunkSize();x++){
+						for (int y=0; y<world.chunkArray[i][j][k].getChunkSize();y++){
+							for (int z=0; z<world.chunkArray[i][j][k].getChunkSize();z++){
+								if (world.chunkArray[i][j][k].getBlockInChunk(x, y, z) != null){
+									
+									x2=x;
+									y2=y;
+									z2=z;
+									
+									for(int l=i;l>0;l--){
+										//System.out.println("out x"+l);
+										x2+=chunk.getChunkSize();
+									}
+									for(int l=j;l>0;l--){
+										//System.out.println("out y"+l);
+										y2+=chunk.getChunkSize();
+										}
+									for(int l=k;l>0;l--){
+										//System.out.println("out z"+l);
+										z2+=chunk.getChunkSize();
+									}
+									renderBaseCube(x2,y2,z2);
+									
+									
+									
+								}
+							}
+						}
+					}
+					
+					
+					
+					
+					
+				}
+			}
+		}
+		
+		
 		
 		//block.renderBlock(0, 0, -12);
 		
@@ -136,7 +189,6 @@ public class renderer {
 	
 	
 	public static void renderBaseCube(float x,float y,float z){
-		
 		glPushMatrix();
 			
 			glTranslatef(x,y,z);

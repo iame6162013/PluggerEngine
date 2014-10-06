@@ -51,10 +51,6 @@ public class Camera {
 	}
 	
 	public void useView(){
-		//glRotatef(rx,1f,0f,0f);
-		//glRotatef(ry,0f,1f,0f);
-		//glRotatef(rz,0f,0f,1f);
-		
 		glRotatef(pitch,1.0f,0.0f,0.0f);
 		glRotatef(yaw,0.0f,1.0f,0.0f);
 		glRotatef(roll,0.0f,0.0f,1.0f);
@@ -107,12 +103,12 @@ public class Camera {
 	
 	
 	public void move(float amt){
-	//LEFT&RIGHT
-	x += amt * Math.sin(Math.toRadians(-yaw));
-	//FORWARD&BACK
-	z += amt * Math.sin(Math.toRadians(yaw+90));
-	//UP&DOWN
-	y += amt * Math.cos(Math.toRadians(-pitch+90));
+		//LEFT&RIGHT
+		x += amt * Math.sin(Math.toRadians(-yaw));
+		//FORWARD&BACK
+		z += amt * Math.sin(Math.toRadians(yaw+90));
+		//UP&DOWN
+		y += amt * Math.cos(Math.toRadians(-pitch+90));
 	}
 	public void moveYaw(float amt, float yaw){
 		//LEFT&RIGHT
@@ -128,15 +124,12 @@ public class Camera {
 	
 	
 	public void rotateY(float amt){
-		System.out.println(pitch+"pitch");
 		pitch += amt;
 	}
 	public void rotateX(float amt){
-		System.out.println(yaw+"yaw");
 		yaw += amt;
 	}
 	public void rotateZ(float amt){
-		System.out.println(roll+"roll");
 		roll += amt;
 	}
 	

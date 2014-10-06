@@ -10,8 +10,6 @@ public class HudElements {
 		//GameRegistry.addHudMess("Here will HUD elements be displayed");
 		//GameRegistry.addHudMess("FPS:",HudComp.class,"fps");
 		
-		GameRegistry.addBlock(10,10,10);
-		
 		
 	}
 	

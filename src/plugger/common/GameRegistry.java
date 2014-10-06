@@ -6,7 +6,7 @@ import java.lang.reflect.Field;
 	 */
 public class GameRegistry {
 
-		public static void addBlock(int x, int y, int z) {
+		public static void addElement() {
 			
 			
 			
