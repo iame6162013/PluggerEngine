@@ -12,6 +12,7 @@ import org.newdawn.slick.opengl.TextureLoader;
 
 import static org.lwjgl.opengl.GL11.*;
 
+import src.plugger.Player.player;
 import src.plugger.common.GameLoop;
 import src.plugger.view.HudElements;
 
@@ -81,7 +82,7 @@ public class GameLoop{
 	
 	/**EVERY TICK OPERATIONS*/
 	private static void updateTick(){
-		//chunk.getBlockInChunk(0, 0, 0);
+		
 	}
 	/**EVERY FRAME OPERATIONS*/
 	private static void updateFrame(){

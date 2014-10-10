@@ -25,7 +25,7 @@ import org.lwjgl.util.glu.Sphere;
 import org.newdawn.slick.opengl.Texture;
 import org.newdawn.slick.opengl.TextureLoader;
 
-import src.plugger.block.block;
+import src.plugger.Player.player;
 import src.plugger.client.renderer.Tessellator;
 import src.plugger.view.Camera;
 import src.plugger.world.PossitionId;
@@ -132,58 +132,48 @@ public class renderer {
 	    s.draw(0.9f, 4, 4);
 	    glPopMatrix();*/
 		
+		//System.out.println(chunk.getBlockInChunk(3,3,3, x3, y3, z3));
 		
-		Chunk chunk = Chunk.instance;
-		
-		for(int i=0;i<world.ChunkLoadRange(); i++){
-			for(int j=0;j<world.ChunkLoadRange(); j++){
-				for(int k=0;k<world.ChunkLoadRange(); k++){
+		for(int i=0;i<5; i++){
+			for(int j=0;j<5; j++){
+				for(int k=0;k<5; k++){
 					
 					
 					int x2=0;
 					int y2=0;
 					int z2=0;
-					for (int x=0; x<world.chunkArray[i][j][k].getChunkSize();x++){
-						for (int y=0; y<world.chunkArray[i][j][k].getChunkSize();y++){
-							for (int z=0; z<world.chunkArray[i][j][k].getChunkSize();z++){
-								if (world.chunkArray[i][j][k].getBlockInChunk(x, y, z) != null){
+					for (int x=0; x<world.chunk.getDefaultChunkSize();x++){
+						for (int y=0; y<world.chunk.getDefaultChunkSize();y++){
+							for (int z=0; z<world.chunk.getDefaultChunkSize();z++){
+								if (world.chunk.getBlockInChunk(i,j,k,  x, y, z) != null){
 									
 									x2=x;
 									y2=y;
 									z2=z;
 									
 									for(int l=i;l>0;l--){
-										//System.out.println("out x"+l);
-										x2+=chunk.getChunkSize();
+										x2+=world.chunk.getDefaultChunkSize();
 									}
 									for(int l=j;l>0;l--){
-										//System.out.println("out y"+l);
-										y2+=chunk.getChunkSize();
-										}
+										y2+=world.chunk.getDefaultChunkSize();
+									}
 									for(int l=k;l>0;l--){
-										//System.out.println("out z"+l);
-										z2+=chunk.getChunkSize();
+										z2+=world.chunk.getDefaultChunkSize();
 									}
 									renderBaseCube(x2,y2,z2);
-									
 									
 									
 								}
 							}
 						}
 					}
-					
-					
-					
-					
-					
 				}
 			}
 		}
 		
+		player.Hud();
 		
-		
-		//block.renderBlock(0, 0, -12);
+		//renderBaseCube(0, 0, -12);
 		
 	}
 	
@@ -193,10 +183,8 @@ public class renderer {
 			
 			glTranslatef(x,y,z);
 			glBegin(GL_QUADS);{
-				float min=-0.5f;
-				float max=0.5f;
-					
-					//Marble.bind();
+				float min=0f;
+				float max=1f;
 					
 					//BackFace
 					glColor3f(max,0.6f,max);

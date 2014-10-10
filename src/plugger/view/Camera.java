@@ -5,9 +5,9 @@ import static org.lwjgl.util.glu.GLU.*;
 
 public class Camera {
 	
-	private float x;
-	private float y;
-	private float z;
+	private static float x;
+	private static float y;
+	private static float z;
 	private float yaw;
 	private float pitch;
 	private float roll;
@@ -26,7 +26,7 @@ public class Camera {
 		pitch=0;
 		roll=0;
 		
-		System.out.println("out");
+		
 		
 		this.fov=fov;
 		this.aspect=aspect;
@@ -54,18 +54,18 @@ public class Camera {
 		glRotatef(pitch,1.0f,0.0f,0.0f);
 		glRotatef(yaw,0.0f,1.0f,0.0f);
 		glRotatef(roll,0.0f,0.0f,1.0f);
-		glTranslatef(x,y,z);
+		glTranslatef(x, y, z);
 	}
 	
-	public float getX(){
+	public static float getX(){
 		return x;
 		
 	}
-	public float getY(){
+	public static float getY(){
 		return y;
 		
 	}
-	public float getZ(){
+	public static float getZ(){
 		return z;
 		
 	}
@@ -109,6 +109,8 @@ public class Camera {
 		z += amt * Math.sin(Math.toRadians(yaw+90));
 		//UP&DOWN
 		y += amt * Math.cos(Math.toRadians(-pitch+90));
+		
+		System.out.println("X"+x+" Z"+z);
 	}
 	public void moveYaw(float amt, float yaw){
 		//LEFT&RIGHT
@@ -118,18 +120,22 @@ public class Camera {
 	}
 	public void moveY(float amt){
 		//UP&DOWN
+		System.out.println("Y"+y);
 		y += amt;
 	}
 	
 	
 	
 	public void rotateY(float amt){
+		System.out.println(pitch);
 		pitch += amt;
 	}
 	public void rotateX(float amt){
+		System.out.println(yaw);
 		yaw += amt;
 	}
 	public void rotateZ(float amt){
+		System.out.println(roll);
 		roll += amt;
 	}
 	

@@ -5,14 +5,7 @@ import java.lang.reflect.Field;
 	 * add item to the hud
 	 */
 public class GameRegistry {
-
-		public static void addElement() {
-			
-			
-			
-		}
-	
-	
+//	
 //	
 //	public static int HudMessMaxID=64;
 //	public static String[] HudMessBase= new String[HudMessMaxID];
@@ -80,46 +73,8 @@ public class GameRegistry {
 //			System.out.println("someone is trying to add a null hud Bar");
 //		}
 //	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+//
+//	
 	
 	
 }

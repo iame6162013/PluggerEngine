@@ -8,6 +8,7 @@ import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.util.vector.Vector2f;
 
 import src.plugger.common.GameLoop;
+import src.plugger.common.PreLoad;
 import src.plugger.world.galaxy.Galaxy;
 
 public class PluggerFrame {
@@ -16,13 +17,11 @@ public class PluggerFrame {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		System.out.println("START");
 		initDisplay();
-		
+		PreLoad.preLoad();
 		Galaxy.LoadWorldFromCode();
-		
 		GameLoop.gameloop();
-		System.out.println("out");
+		
 		cleanUp();
 	}
 	

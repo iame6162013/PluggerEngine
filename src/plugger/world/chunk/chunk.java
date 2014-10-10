@@ -1,9 +1,6 @@
 package src.plugger.world.chunk;
 
-import src.plugger.block.block;
-import src.plugger.client.renderer.Tessellator;
 import src.plugger.world.PossitionId;
-import src.plugger.world.galaxy.Galaxy;
 
 public class Chunk {
 //	static int ChunkX;
@@ -33,27 +30,37 @@ public class Chunk {
 	
 	
 	
+	public static int chunkSize=6;
 	
-	static PossitionId PosId=new PossitionId();
-	//public chunk instance;
+	public static PossitionId[][][] PosId=new PossitionId[chunkSize][chunkSize][chunkSize];
 	
-	 public static final Chunk instance = new Chunk(20);
+	public static void ChunkInit(){
+		int l=chunkSize-1;
+		for (int i=0; i<l; i++){
+			for (int j=0; j<l; j++){
+				for (int k=0; k<l; k++){
+					PosId[i][j][k]= new PossitionId();
+	}	}	}	}
 	
 	
-	
-	private Chunk(int i)
-    {
-    }
-	public void addBlock(int x,int y,int z,String Compostition,int sizeX,int sizeY, int sizeZ){
-		PosId.addBlock(x, y, z, Compostition, sizeX, sizeY, sizeZ);
+	public void addBlock(int ChunkX,int ChunkY,int ChunkZ,int x,int y,int z,String Compostition,int sizeX,int sizeY, int sizeZ){
+		PosId[ChunkX][ChunkY][ChunkZ].addBlock(x, y, z, Compostition, sizeX, sizeY, sizeZ);
 	}
-	public String getBlockInChunk(int x,int y, int z){
-		return PosId.getBlock(x,y,z);
+	public String getBlockInChunk(int ChunkX,int ChunkY,int ChunkZ,int x,int y, int z){
+		return PosId[ChunkX][ChunkY][ChunkZ].getBlock(x,y,z);
 	}
 	
-	public int getChunkSize(){
-		return PosId.sizeChunk();
+	public int getChunkSize(int ChunkX,int ChunkY,int ChunkZ){
+		return PosId[ChunkX][ChunkY][ChunkZ].sizeChunk();
 	}
+	public boolean isLoaded(int ChunkX,int ChunkY,int ChunkZ){
+		return PosId[ChunkX][ChunkY][ChunkZ].isLoaded;
+	}
+	public int getDefaultChunkSize() {
+		return 32;
+	}
+	
+	
 
 	
 	
