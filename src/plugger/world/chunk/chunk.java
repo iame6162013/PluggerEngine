@@ -1,38 +1,16 @@
 package src.plugger.world.chunk;
 
+import src.plugger.Element.Element;
 import src.plugger.world.PossitionId;
 
 public class Chunk {
-//	static int ChunkX;
-//	static int ChunkY;
-//	static int ChunkZ;
-//	
-//	public static int getChunkX() {
-//		return ChunkX;
-//	}
-//	public static void setChunkX(int chunkX) {
-//		ChunkX = chunkX;
-//	}
-//	public static int getChunkY() {
-//		return ChunkY;
-//	}
-//	public static void setChunkY(int chunkY) {
-//		ChunkY = chunkY;
-//	}
-//	public static int getChunkZ() {
-//		return ChunkZ;
-//	}
-//	public static void setChunkZ(int chunkZ) {
-//		ChunkZ = chunkZ;
-//	}
-	
-	
-	
-	
-	
 	public static int chunkSize=6;
 	
 	public static PossitionId[][][] PosId=new PossitionId[chunkSize][chunkSize][chunkSize];
+	
+	int CHUNK_X;
+	int CHUNK_Y;
+	int CHUNK_Z;
 	
 	public static void ChunkInit(){
 		int l=chunkSize-1;
@@ -43,23 +21,22 @@ public class Chunk {
 	}	}	}	}
 	
 	
-	public void addBlock(int ChunkX,int ChunkY,int ChunkZ,int x,int y,int z,String Compostition,int sizeX,int sizeY, int sizeZ){
+	public void addBlock(int ChunkX,int ChunkY,int ChunkZ,int x,int y,int z,Element Compostition,int sizeX,int sizeY, int sizeZ){
 		PosId[ChunkX][ChunkY][ChunkZ].addBlock(x, y, z, Compostition, sizeX, sizeY, sizeZ);
 	}
-	public String getBlockInChunk(int ChunkX,int ChunkY,int ChunkZ,int x,int y, int z){
+	public Element getBlockInChunk(int ChunkX,int ChunkY,int ChunkZ,int x,int y, int z){
 		return PosId[ChunkX][ChunkY][ChunkZ].getBlock(x,y,z);
 	}
-	
 	public int getChunkSize(int ChunkX,int ChunkY,int ChunkZ){
 		return PosId[ChunkX][ChunkY][ChunkZ].sizeChunk();
 	}
 	public boolean isLoaded(int ChunkX,int ChunkY,int ChunkZ){
 		return PosId[ChunkX][ChunkY][ChunkZ].isLoaded;
 	}
-	public int getDefaultChunkSize() {
+	public static int getDefaultChunkSize() {
 		return 32;
 	}
-	
+
 	
 
 	

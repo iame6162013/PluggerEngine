@@ -1,5 +1,6 @@
 package src.plugger.world;
 
+import src.plugger.Element.Element;
 import src.plugger.world.chunk.Chunk;
 
 public class world {
@@ -21,23 +22,29 @@ public class world {
 	
 	public static void LoadWorldFromCode(){
 		
-		addBlock(1, 1, 1, "Am^ha");
-		addBlock(40, 1, 1, "Am^ha");
-		
-		addBlock(1, 1, 4, "Am^ha");
+		addBlock(1, 1, 1, Element.H);
+		addBlock(40, 1, 1, Element.H);
+		addBlock(1, 1, 4, Element.H);
 		for(int i=0;i<10;i++){
 			
-			System.out.print(addBlock(160,i, 4, "olplo?"));
+			System.out.print(addBlock(160,i, 4, Element.H));
 		}
+		
+		
+		
+		
+		
+		
+		
 	}
 	
 	
-	public static boolean addBlock(int x,int y,int z,String Compostition){
+	public static boolean addBlock(int x,int y,int z,Element Compostition){
 		boolean ret;
 		ret = addBlock(x, y, z, Compostition,1,1,1);
 		return ret;
 	}
-	public static boolean addBlock(int x,int y,int z,String Compostition,int sizeX,int sizeY, int sizeZ){
+	public static boolean addBlock(int x,int y,int z,Element Compostition,int sizeX,int sizeY, int sizeZ){
 		boolean noProblems=true;
 		int x2=0;
 		int y2=0;

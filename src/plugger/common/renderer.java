@@ -34,7 +34,7 @@ import src.plugger.world.chunk.Chunk;
 
 public class renderer {
 	
-	private static Camera cam=new Camera(70,(float)Display.getWidth()/(float)Display.getHeight(),0.3f,1000);
+	public static Camera cam=new Camera(70,(float)Display.getWidth()/(float)Display.getHeight(),0.3f,1000);
 	private static int x=0;
 	
 	
@@ -62,38 +62,7 @@ public class renderer {
 	
 	public static void draw(){
 		
-		//FORWARD&BACK
-		if(Keyboard.isKeyDown(Keyboard.KEY_W))
-		cam.move(0.1f);
-		if(Keyboard.isKeyDown(Keyboard.KEY_S))
-		cam.move(-0.1f);
-		
-		//LEFT&RIGHT
-		if(Keyboard.isKeyDown(Keyboard.KEY_A))
-		cam.moveYaw(0.1f,90f);
-		if(Keyboard.isKeyDown(Keyboard.KEY_D))
-		cam.moveYaw(-0.1f,90f);
-		
-		
-		//UP&DOWN
-		if(Keyboard.isKeyDown(Keyboard.KEY_LSHIFT))
-		cam.moveY(0.1f);
-		if(Keyboard.isKeyDown(Keyboard.KEY_SPACE))
-		cam.moveY(-0.1f);
-		
-		if(Keyboard.isKeyDown(Keyboard.KEY_NUMPAD7))
-		cam.rotateZ(-2f);
-		if(Keyboard.isKeyDown(Keyboard.KEY_NUMPAD9))
-		cam.rotateZ(2f);
-		if(Keyboard.isKeyDown(Keyboard.KEY_NUMPAD4))
-		cam.rotateX(-2f);
-		if(Keyboard.isKeyDown(Keyboard.KEY_NUMPAD6))
-		cam.rotateX(2f);
-		if(Keyboard.isKeyDown(Keyboard.KEY_NUMPAD8))
-		cam.rotateY(-2f);
-		if(Keyboard.isKeyDown(Keyboard.KEY_NUMPAD2))
-		cam.rotateY(2f);
-		
+
 		
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glLoadIdentity();

@@ -82,7 +82,7 @@ public class GameLoop{
 	
 	/**EVERY TICK OPERATIONS*/
 	private static void updateTick(){
-		
+		player.Input();
 	}
 	/**EVERY FRAME OPERATIONS*/
 	private static void updateFrame(){
@@ -92,10 +92,10 @@ public class GameLoop{
 	}
 	/**EVERY SECOND OPERATIONS*/
 	private static void updateESO(){
-		System.out.println("TickRatePS:"+ticksPs);
+		/*System.out.println("TickRatePS:"+ticksPs);
 		System.out.println("TickRate:"+tickRate);
 		System.out.println("FPS:"+fps);
-		System.out.println("FpsRate:"+FpsRate);
+		System.out.println("FpsRate:"+FpsRate);*/
 	}
 	
 	
