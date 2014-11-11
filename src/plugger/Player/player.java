@@ -1,5 +1,8 @@
 package src.plugger.Player;
 
+import static org.lwjgl.opengl.GL11.glRotatef;
+import static org.lwjgl.opengl.GL11.glTranslatef;
+
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.*;
 
@@ -25,10 +28,16 @@ public class player {
 		
 		if(HudOpen==true){
 			float[] array =new float[3];
-			array =PivotCamera(1,4,2);//Camera.getX(),Camera.getY(),Camera.getZ()+2);
-			drawCircle3D(array[0],array[1],array[2],1000,Camera.pitch(),Camera.yaw(),Camera.roll());
+			try{
 			
-			
+			//drawCircle3D(0,0,-0.5f,0.3f,10,1,1,0);
+			drawCircle3D(10,0,-0.5f,200,1);
+			drawCircle3D(9,0,-0.5f,200,1);
+			drawCircle3D(14,0,-0.5f,200,1);
+			drawCircle3D(0,0,-0.5f,0.3f,10);
+			}catch(Exception e){
+				System.out.println(e);
+			}
 			//drawCircle3D(1,2,3,50000,1);
 			
 			//
@@ -40,13 +49,12 @@ public class player {
 	public static float[] PivotCamera(float x, float y, float z){
 		float[] Retrnables=new float[3];
 		
-		float x2=x-Camera.getX();
-		float y2=y-Camera.getZ();
-		float z2=z-Camera.getY();
+		Retrnables[0]=-x;//+100*(Camera.yaw()/360);
+		Retrnables[1]=-y;//+10*(Camera.pitch()/360);
+		Retrnables[2]=-z;//*(Camera.roll()/360);
 		
-		Retrnables[0]=x;//+100*(Camera.yaw()/360);
-		Retrnables[1]=y;//+10*(Camera.pitch()/360);
-		Retrnables[2]=z;//*(Camera.roll()/360);
+		//glTranslatef(-Camera.getX()+x,-Camera.getY()+y,-Camera.getZ()+z);
+		
 		return Retrnables;
 	}
 	public static void drawCircle3D(float x, float y, float z ,int num_segments, int Dir){
@@ -70,21 +78,13 @@ public class player {
 
 	
 	
-	public static void drawCircle3D(float x, float y, float z ,int num_segments, float DirP, float DirY, float DirR){
-		double x2=0;double y2=0;double z2=0;float amt= 0.5f;float dirP=0;float dirY; float angle=0;
+	public static void drawCircle3D(float x, float y, float z ,float amt,int num_segments){
+		double x2=0;double y2=0;double z2=0;float angle=0;
 		
-		
-		
-		float j= Camera.yaw()/360;
-		boolean k=false;
-		if (j>1){
-			j--;
-			k=true;
-		}
-		//System.out.println(j+"_"+k);
-		
-		
-		
+		glTranslatef(-Camera.getX()+x,-Camera.getY()+y,-Camera.getZ());
+		glRotatef(-Camera.roll(),0.0f,0.0f,1.0f);
+		glRotatef(-Camera.yaw(),0.0f,1.0f,0.0f);
+		glRotatef(-Camera.pitch(),1.0f,0.0f,0.0f);
 		
 		GL11.glDisable(GL11.GL_TEXTURE_2D);
 		GL11.glColor4f(0.4F,0.4F,0F,0);
@@ -92,55 +92,38 @@ public class player {
 		tessellator.startDrawing(GL11.GL_LINE_LOOP);
 		for(int i = 0; i < num_segments; i++) {
 			angle = (float) (2.0f * Math.PI * i / num_segments);
-			
-			
-			DirP=(float) Math.toRadians(180);
-			dirP=DirP;
-			DirY=1;
-			dirY=DirY/360;
-			
-			
-			
-			
-//			x2 =x+ amt*Math.sin(angle*1.7);
-//			y2 =y+ amt*Math.cos(angle*0.6);
-//			z2 =z+ amt*Math.sin(angle*0.0f);
-			
-			//j=-0.5f;
-			float l=1.0f;
-			
-			
 			y2 =y+ amt*Math.cos(angle);
-			
-			
-			x2 =x+ amt*Math.sin(angle)*(opposite(j,0.5f));
-			z2 =z+ amt*Math.sin(angle)*(opposite(-j,0.5f));
-			
-			
-			
-			
-			
-			
-			
-			//Working for j=0.75
-//			y2 =y+ amt*Math.cos(angle);
-//			x2 =x+ amt*Math.sin(angle*1)/(j+1);
-//			z2 =z+ amt*Math.sin(angle)/(j+1);
-			
-			//Working for j=1
-			//y2 =y+ amt*Math.cos(angle);
-			//x2 =x+ amt*Math.sin(angle);
-			//z2 =z+ amt*Math.sin(opposite(angle,0.5f)*opposite(j,1f));
-			
+			x2 =x+ amt*Math.sin(angle);
+			z2 =z;
 			tessellator.addVertex(x2, y2, z2);
 		}
+		tessellator.draw();
+		GL11.glEnable(GL11.GL_TEXTURE_2D);
 		
+	}
+	public static void drawCircle3D(float x, float y, float z ,float amt,int num_segments,float x2,float y2, float z2){
+		double x3=0;double y3=0;double z3=0;float angle=0;
 		
+		glTranslatef(0,10,5);
+		/*glRotatef(-Camera.roll(),0.0f,0.0f,1.0f);
+		glRotatef(-Camera.yaw(),0.0f,1.0f,0.0f);
+		glRotatef(-Camera.pitch(),1.0f,0.0f,0.0f);*/
 		
-		
+		GL11.glDisable(GL11.GL_TEXTURE_2D);
+		GL11.glColor4f(0.4F,0.4F,0F,0);
+		Tessellator tessellator = Tessellator.instance;
+		tessellator.startDrawing(GL11.GL_LINE_LOOP);
+		for(int i = 0; i < num_segments; i++) {
+			angle = (float) (2.0f * Math.PI * i / num_segments);
+			y3 =y+ amt*Math.cos(angle*x2);
+			x3 =x+ amt*Math.sin(angle*y2);
+			z3 =z+1*Math.sin(angle*z2);
+			tessellator.addVertex(x3, y3, z3);
+		}
 		tessellator.draw();
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
 	}
+	
 	
 	public static float opposite(float x,float base){
 		float ret;float Dif=base-x;
@@ -160,15 +143,6 @@ public class player {
 		ret=x-amt;
 		return ret;
 	}*/
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	public static void drawLine3D(float x, float y, float z,float x2, float y2, float z2){
 		GL11.glDisable(GL11.GL_TEXTURE_2D);
 		GL11.glColor4f(0.4F,0.4F,0F,0);
@@ -209,7 +183,6 @@ public class player {
 		tessellator.draw();
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
 	}
-
 	public static void Input() {
 		Camera cam=renderer.cam;
 		//FORWARD&BACK
@@ -225,8 +198,8 @@ public class player {
 		if(Keyboard.isKeyDown(Keyboard.KEY_NUMPAD7)){cam.rotateZ(-2f);}
 		if(Keyboard.isKeyDown(Keyboard.KEY_NUMPAD9)){cam.rotateZ(2f);}
 		//Yaw
-		if(Keyboard.isKeyDown(Keyboard.KEY_NUMPAD4)){cam.rotateX(-2f);}
-		if(Keyboard.isKeyDown(Keyboard.KEY_NUMPAD6)){cam.rotateX(2f);}
+		if(Keyboard.isKeyDown(Keyboard.KEY_NUMPAD4)){cam.rotateX(-20f);}
+		if(Keyboard.isKeyDown(Keyboard.KEY_NUMPAD6)){cam.rotateX(20f);}
 		//Pitch
 		if(Keyboard.isKeyDown(Keyboard.KEY_NUMPAD8)){cam.rotateY(-2f);}
 		if(Keyboard.isKeyDown(Keyboard.KEY_NUMPAD2)){cam.rotateY(2f);}
@@ -245,7 +218,9 @@ public class player {
 		
 		
 		//Just to see what i'm doing must be changed often
-		if(Keyboard.isKeyDown(Keyboard.KEY_O)){System.out.println("OUTPUT SPECIAL THINGY:"+			opposite(-0.5f,0.5f)	);}
+		if(Keyboard.isKeyDown(Keyboard.KEY_O)){System.out.println("OUTPUT SPECIAL THINGY:"	);}
+
+		
 		
 	}
 	

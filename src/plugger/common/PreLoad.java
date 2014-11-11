@@ -11,7 +11,9 @@ public class PreLoad {
 		
 		
 		
-		System.out.println(Element.forAtomicNumber(1));
+		
+		
+		
 	}
 	
 }

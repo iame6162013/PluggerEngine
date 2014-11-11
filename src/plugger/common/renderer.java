@@ -21,6 +21,7 @@ import java.io.IOException;
 
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
+import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.glu.Sphere;
 import org.newdawn.slick.opengl.Texture;
 import org.newdawn.slick.opengl.TextureLoader;
@@ -62,79 +63,21 @@ public class renderer {
 	
 	public static void draw(){
 		
-
+		
+		
+		Marble.bind();
+		//Marble.release();
+		
 		
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		glLoadIdentity();
 		cam.useView();
 		
-		
-		
-		
-		
-		
-		
-		
-		
-
-		
-		
-		Marble.bind();
-		
-		
-		
-		/*Tessellator tessellator = Tessellator.instance;
-		tessellator.startDrawingQuads();{
-		
-		glTranslatef(0,0,-2);
-		glColor3f(1f,0.6f,0f);
-		tessellator.addVertexWithUV(0,0, 0,0,1);
-		tessellator.addVertexWithUV(0,1,0,1,1);
-		tessellator.addVertexWithUV(1,1,0,1,0);
-		tessellator.addVertexWithUV(1,0, 0,0,0);
-		}
-		tessellator.draw();*/
-		
-		/*glPushMatrix();
-	    glTranslatef(0, 0, -4);
-	    Sphere s = new Sphere();
-	    s.draw(0.9f, 4, 4);
-	    glPopMatrix();*/
-		
-		//System.out.println(chunk.getBlockInChunk(3,3,3, x3, y3, z3));
-		
-		for(int i=0;i<5; i++){
-			for(int j=0;j<5; j++){
-				for(int k=0;k<5; k++){
-					
-					
-					int x2=0;
-					int y2=0;
-					int z2=0;
-					for (int x=0; x<world.chunk.getDefaultChunkSize();x++){
-						for (int y=0; y<world.chunk.getDefaultChunkSize();y++){
-							for (int z=0; z<world.chunk.getDefaultChunkSize();z++){
-								if (world.chunk.getBlockInChunk(i,j,k,  x, y, z) != null){
-									
-									x2=x;
-									y2=y;
-									z2=z;
-									
-									for(int l=i;l>0;l--){
-										x2+=world.chunk.getDefaultChunkSize();
-									}
-									for(int l=j;l>0;l--){
-										y2+=world.chunk.getDefaultChunkSize();
-									}
-									for(int l=k;l>0;l--){
-										z2+=world.chunk.getDefaultChunkSize();
-									}
-									renderBaseCube(x2,y2,z2);
-									
-									
-								}
-							}
-						}
+		for (int x=0; x<5*Chunk.getDefaultChunkSize();x++){
+			for (int y=0; y<5*Chunk.getDefaultChunkSize();y++){
+				for (int z=0; z<5*Chunk.getDefaultChunkSize();z++){
+					if (world.chunk.getBlockInChunk(x, y, z) != null){
+						renderBaseCube(x,y,z);
 					}
 				}
 			}
@@ -142,7 +85,7 @@ public class renderer {
 		
 		player.Hud();
 		
-		//renderBaseCube(0, 0, -12);
+		
 		
 	}
 	

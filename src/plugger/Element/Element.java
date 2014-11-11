@@ -3,6 +3,10 @@ package src.plugger.Element;
 import java.util.HashMap;
 import java.util.Map;
 
+
+
+
+
 public enum Element {
 	//Shortname, id, name, weight, meltingPoint
     H(1,1, "Hydrogen", 1.00794, 13.99),

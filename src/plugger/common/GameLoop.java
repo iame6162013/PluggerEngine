@@ -14,7 +14,6 @@ import static org.lwjgl.opengl.GL11.*;
 
 import src.plugger.Player.player;
 import src.plugger.common.GameLoop;
-import src.plugger.view.HudElements;
 
 public class GameLoop{
 	private static final int maxFrameRate = 50;
@@ -33,9 +32,6 @@ public class GameLoop{
 	
 	/**Main game loop */
 	public static void gameloop() {
-		
-		
-		HudElements.Hud();
 		
 		
 		/**

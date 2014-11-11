@@ -92,34 +92,28 @@ public class Camera {
 	}
 	public static void setYaw(float i){
 		yaw=i;
-		while(yaw>180){
-			System.out.println(yaw);
+		while(yaw>360){
 			yaw-=360;
-			System.out.println(yaw);
 		}
-		while(yaw<-180){
-			System.out.println(yaw);
-			
+		while(yaw<0){
 			yaw+=360;
-			yaw=0;
-			System.out.println(yaw);
 		}
 	}
 	public static void setPitch(float i){
 		pitch=i;
-		while(pitch>=180){
+		while(pitch>360){
 			pitch-=360;
 		}
-		while(pitch>=-180){
+		while(pitch<0){
 			pitch+=360;
 		}
 	}
 	public static void setRoll(float i){
 		roll=i;
-		while(roll>=180){
+		while(roll>360){
 			roll-=360;
 		}
-		while(roll<=-180){
+		while(roll<0){
 			roll+=360;
 		}
 	}
@@ -148,30 +142,30 @@ public class Camera {
 	public void rotateY(float amt){
 		System.out.println(pitch);
 		pitch += amt;
-		while(pitch>180){
+		while(pitch>360){
 			pitch-=360;
 		}
-		while(pitch<-180){
+		while(pitch<0){
 			pitch+=360;
 		}
 	}
 	public void rotateX(float amt){
 		System.out.println(yaw);
 		yaw += amt;
-		while(yaw>180){
+		while(yaw>360){
 			yaw-=360;
 		}
-		while(yaw<-180){
+		while(yaw<0){
 			yaw+=360;
 		}
 	}
 	public void rotateZ(float amt){
 		System.out.println(roll);
 		roll += amt;
-		while(roll>=360){
+		while(roll>360){
 			roll-=360;
 		}
-		while(roll<=-360){
+		while(roll<0){
 			roll+=360;
 		}
 	}
