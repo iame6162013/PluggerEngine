@@ -22,7 +22,7 @@ public class world {
 	
 	public static void LoadWorldFromCode(){
 		
-		int amount=40;
+		int amount=50;
 		
 		/*Elements[][][] compostition=new Elements[amount][amount][amount];
 		for(int x=0; x<compostition.length;x++){
@@ -42,7 +42,7 @@ public class world {
 		
 		
 		
-		SimplexNoise simplexNoise=new SimplexNoise(4,1,random.nextInt()*5);
+		SimplexNoise simplexNoise=new SimplexNoise(20,1f,random.nextInt());
 		short[][][] noise=new short[amount][amount][amount];
 		System.out.println("LAG!!!");
 		for(int x=0;x<amount;x++){
@@ -55,15 +55,13 @@ public class world {
 //						comp[x+y+z]=(int) random.nextInt();
 //						compostition[x][y][z].add(elem, perc, comp);
 //						addBlock(x,y,z, compostition[x][y][z]);
-						noise[x][y][z]=(short) Math.abs(simplexNoise.getNoise(x,y,z));
+						noise[x][y][z]=(short) simplexNoise.getNoise(x,y,z);
 					}	
 				}
 			}
-			//ImageWriter.greyWritePNG(noise[x], x);
 			System.out.println(x);
 		}
-		noise[10][1][10]=1;
-		ImageWriter.greyWriteGif(noise, 0);
+		ImageWriter.greyWriteApng(noise, 0);
 		
 		
 		

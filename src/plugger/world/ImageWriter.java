@@ -6,11 +6,14 @@ import javax.imageio.stream.ImageOutputStream;
 
 import src.plugger.util.GifSequenceWriter;
 
-import java.awt.*;
+import java.awt.Color;
 import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferInt;
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 
 public class ImageWriter {
 	
@@ -100,39 +103,47 @@ public class ImageWriter {
     }*/
     
     
-    public static void greyWriteGif(short[][][] noise, Integer Numb){
+    public static void greyWriteApng(short[][][] noise, Integer Numb){
     	System.out.println("Converting.");
-		BufferedImage[] imgs = new BufferedImage[noise.length];
 		BufferedImage img = new BufferedImage(noise.length, noise.length, BufferedImage.TYPE_INT_ARGB);
+		
+		
+		byte[][] imageInByte=new byte[noise.length][noise.length];
+		
 		
 		for (int l = 0; l < noise.length; l++) {
 			for (int x = 0; x < noise.length; x++) {
 				for (int y = 0; y < noise.length; y++) {
-					if (noise[x][y][l]>1){
-	                    noise[x][y][l]=1;
+					if (noise[l][x][y]>1){
+	                    noise[l][x][y]=1;
 	                }
-	                if (noise[x][y][l]<0){
-	                    noise[x][y][l]=0;
+	                if (noise[l][x][y]<0){
+	                    noise[l][x][y]=0;
 	                }
-					Color color = new Color((float)noise[x][y][l], (float)noise[x][y][l], (float)noise[x][y][l]);
+					Color color = new Color((float)noise[l][x][y], (float)noise[l][x][y], (float)noise[l][x][y]);
 					img.setRGB(x, y, color.getRGB());
 				}
 			}
-			imgs[l] = img;
+			
+			try {
+				ByteArrayOutputStream baos = new ByteArrayOutputStream();
+				ImageIO.write(img, "png", baos);
+				baos.flush();
+				imageInByte[l] = baos.toByteArray();
+				baos.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
 		}
 		
-		
-		if(imgs[39]==imgs[0]){
-			System.out.println("Failure!");
-		}
-
 		String directory = "simplex_noise_3d";
 		File dir = new File(directory);
 		if (!dir.exists()) {
 			dir.mkdir();
 		}
-		String filename = directory + "/" + "noise";
-		String suffix = ".gif";
+		String filename = directory + "/" + "Bllob";
+		String suffix = ".png";
 
 		int i = 0;
 		File file;
@@ -150,20 +161,19 @@ public class ImageWriter {
 		try {
 			stream = new FileImageOutputStream(file);
 			GifSequenceWriter writer = new GifSequenceWriter(stream, BufferedImage.TYPE_INT_RGB, 64, true);
-			for (int j=0;j<imgs.length;j++) {
-				writer.writeToSequence(imgs[j]);
+			for (int j=0;j<imageInByte.length;j++) {
+				InputStream in = new ByteArrayInputStream(imageInByte[j]);
+				BufferedImage bImageFromConvert = ImageIO.read(in);
 				
 				
-				File file2 = new File("noise"+Numb+".png");
-				Numb++;
-	            file2.createNewFile();
-				ImageIO.write(imgs[j], "PNG", file2);
+				writer.writeToSequence(bImageFromConvert);
 			}
 			
             
 			
 			
 			writer.close();
+			System.gc();
 		} catch (IOException e) {
 			e.printStackTrace();
 		} finally {
