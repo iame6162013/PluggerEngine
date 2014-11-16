@@ -2,7 +2,7 @@ package src.plugger.world.chunk;
 
 import src.plugger.Element.Element;
 import src.plugger.Element.Elements;
-import src.plugger.world.PossitionId;
+import src.plugger.world.chunk.PossitionId;
 
 public class Chunk {
 	public static int chunkSize=6;

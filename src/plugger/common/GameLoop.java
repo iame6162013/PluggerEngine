@@ -79,12 +79,13 @@ public class GameLoop{
 	/**EVERY TICK OPERATIONS*/
 	private static void updateTick(){
 		player.Input();
+		System.gc();
 	}
 	/**EVERY FRAME OPERATIONS*/
 	private static void updateFrame(){
 		renderer.draw();
-		
 		Display.update();
+		System.gc();
 	}
 	/**EVERY SECOND OPERATIONS*/
 	private static void updateESO(){

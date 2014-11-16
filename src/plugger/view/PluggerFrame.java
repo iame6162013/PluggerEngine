@@ -5,36 +5,40 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
+import org.lwjgl.opengl.PixelFormat;
 import org.lwjgl.util.vector.Vector2f;
 
 import src.plugger.common.GameLoop;
 import src.plugger.common.PreLoad;
-import src.plugger.world.galaxy.Galaxy;
+import src.plugger.world.world;
+
 
 public class PluggerFrame {
-
+	
+	private static final int WIDTH = 1280; 
+	private static final int HEIGHT = 720; 
+	private static final int FPS_CAP = 60;
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
+		
+		
 		initDisplay();
 		PreLoad.preLoad();
-		Galaxy.LoadWorldFromCode();
+		world.LoadWorldFromCode();
 		GameLoop.gameloop();
 		
 		cleanUp();
+		System.exit(0);
 	}
 	
-	private static void cleanUp(){
-		Keyboard.destroy();
-		Display.destroy();
-		Mouse.destroy();
-	}
+	
 	public static void initDisplay(){
 		try {
-			Display.setDisplayMode(new DisplayMode(800,600));
+			Display.setDisplayMode(new DisplayMode(WIDTH,HEIGHT));
 			Display.setTitle("Plugger");
-			Display.sync(20);
+			Display.sync(FPS_CAP);
 			Display.create();
 			Keyboard.create();
 			Mouse.create();
@@ -42,6 +46,14 @@ public class PluggerFrame {
 			e.printStackTrace();
 		}
 	}
+	
+	
+	
+	
+	
+	
+	
+	
 	public static void Render()
 	{
 		Display.update();
@@ -69,5 +81,10 @@ public class PluggerFrame {
 	public Vector2f GetCenter()
 	{
 		return new Vector2f(GetWidth()/2, GetHeight()/2);
+	}
+	private static void cleanUp(){
+		Keyboard.destroy();
+		Display.destroy();
+		Mouse.destroy();
 	}
 }

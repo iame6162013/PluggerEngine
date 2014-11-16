@@ -1,4 +1,4 @@
-package src.plugger.world;
+package src.plugger.world.chunk;
 
 import src.plugger.Element.Element;
 import src.plugger.Element.Elements;

@@ -10,7 +10,6 @@ import static org.lwjgl.opengl.GL11.glEnd;
 import static org.lwjgl.opengl.GL11.glLoadIdentity;
 import static org.lwjgl.opengl.GL11.glPopMatrix;
 import static org.lwjgl.opengl.GL11.glPushMatrix;
-import static org.lwjgl.opengl.GL11.glRotatef;
 import static org.lwjgl.opengl.GL11.glTexCoord2f;
 import static org.lwjgl.opengl.GL11.glTranslatef;
 import static org.lwjgl.opengl.GL11.glVertex3f;
@@ -19,17 +18,12 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.util.glu.Sphere;
 import org.newdawn.slick.opengl.Texture;
 import org.newdawn.slick.opengl.TextureLoader;
 
-import src.plugger.Player.player;
-import src.plugger.client.renderer.Tessellator;
+import src.plugger.Player.Hud;
 import src.plugger.view.Camera;
-import src.plugger.world.PossitionId;
 import src.plugger.world.world;
 import src.plugger.world.chunk.Chunk;
 
@@ -83,7 +77,7 @@ public class renderer {
 			}
 		}
 		
-		player.Hud();
+		Hud.Hud();
 		
 		
 		

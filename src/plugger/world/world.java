@@ -4,27 +4,26 @@ import java.util.Random;
 
 import src.plugger.Element.Element;
 import src.plugger.Element.Elements;
+import src.plugger.util.ImageWriter;
 import src.plugger.util.SimplexNoise;
 import src.plugger.world.chunk.Chunk;
+import java.nio.ByteBuffer;
 
+import org.lwjgl.BufferUtils;
 public class world {
 	
 	
 	
 	
-
-
-
-
 	public static int ChunkLoadRange=3;
 	public static Chunk chunk=new Chunk();
 	public static Random random = new Random(200);
 	
 	public static void LoadWorldFromCode(){
 		
-		int amount=50;
+		int amount=40;
 		
-		/*Elements[][][] compostition=new Elements[amount][amount][amount];
+		Elements[][][] compostition=new Elements[amount][amount][amount];
 		for(int x=0; x<compostition.length;x++){
 			for(int y=0; y<compostition.length;y++){
 				for(int z=0; z<compostition.length;z++){
@@ -32,43 +31,41 @@ public class world {
 				}
 			}
 			
-		}*/
+		}
 		
 		
 		
-		/*Element[] elem=new Element[amount*3];
-		short[] perc=new short[amount*3];
-		int[] comp=new int[amount*3];*/
+		Element[] elem=new Element[100];
+		short[] perc=new short[100];
+		int[] comp=new int[100];
+
 		
-		
-		
-		SimplexNoise simplexNoise=new SimplexNoise(20,1f,random.nextInt());
-		short[][][] noise=new short[amount][amount][amount];
-		System.out.println("LAG!!!");
+		SimplexNoise simplexNoise=new SimplexNoise(50,0.5,207);
+		//ByteBuffer buffer = BufferUtils.createByteBuffer(amount*amount*amount);
+		//System.out.println("LAG!!!");
+		//short pixel=0;
 		for(int x=0;x<amount;x++){
 			for(int y=0;y<amount;y++){
 				for(int z=0;z<amount;z++){
-					if(true){//simplexNoise.getNoise(x,y,z)<=0){
-//						
-//						elem[x+y+z]=Element.forAtomicNumber((int) random.nextInt(100));
-//						perc[x+y+z]=(short) random.nextInt();
-//						comp[x+y+z]=(int) random.nextInt();
-//						compostition[x][y][z].add(elem, perc, comp);
-//						addBlock(x,y,z, compostition[x][y][z]);
-						noise[x][y][z]=(short) simplexNoise.getNoise(x,y,z);
-					}	
+					if(simplexNoise.getNoise(x,y,z)>=0.5f){
+						
+						elem[0]=Element.forAtomicNumber((int) random.nextInt(100));
+						perc[0]=(short) random.nextInt();
+						comp[0]=(int) random.nextInt();
+						compostition[x][y][z].add(elem, perc, comp);
+						addBlock(x,y,z, compostition[x][y][z]);
+					}
+					//pixel = (short) (simplexNoise.getNoise(x,y,z)*255);
+					//if (pixel<0){pixel=0;}
+					//buffer.put((byte)((pixel)& 0xFF));
 				}
 			}
-			System.out.println(x);
+			
+			System.out.println("_"+x);
 		}
-		ImageWriter.greyWriteApng(noise, 0);
-		
-		
-		
-		
-
-		
-		
+		//System.out.println("_"+((byte)(simplexNoise.getNoise(0,0,40)*255)));
+		//buffer.flip();
+		//ImageWriter.greyWriteBigAPng(buffer, 0);
 		
 		
 		
@@ -93,7 +90,7 @@ public class world {
 		int ChunkY=0;
 		int ChunkZ=0;
 		
-		while(x>=chunk.getDefaultChunkSize()){
+		/*while(x>=chunk.getDefaultChunkSize()){
 			x-=chunk.getDefaultChunkSize();
 			ChunkX++;
 		}
@@ -104,7 +101,7 @@ public class world {
 		while(z>=chunk.getDefaultChunkSize()){
 			z-=chunk.getDefaultChunkSize();
 			ChunkZ++;
-		}
+		}*/
 		
 		return chunk.isLoaded(ChunkX, ChunkY, ChunkZ);
 	}
