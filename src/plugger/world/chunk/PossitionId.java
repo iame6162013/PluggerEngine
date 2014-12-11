@@ -1,8 +1,8 @@
-package src.plugger.world.chunk;
+package plugger.world.chunk;
 
-import src.plugger.Element.Element;
-import src.plugger.Element.Elements;
-import src.plugger.world.chunk.Chunk;
+import plugger.Element.Element;
+import plugger.Element.Elements;
+import plugger.world.chunk.Chunk;
 
 public class PossitionId {
 	public int sizeChunk=32;
@@ -19,6 +19,9 @@ public class PossitionId {
     	sizeBlockItemZ[x][y][z]=sizeZ;
     }
     public Elements getBlock(int x,int y,int z){
+    	if (x<0){x=0;}
+    	if (y<0){y=0;}
+    	if (z<0){z=0;}
     	return IdentifierContainer[x][y][z];
     }
     public int sizeChunk(){

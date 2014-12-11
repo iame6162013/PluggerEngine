@@ -1,23 +1,24 @@
-package src.plugger.Element;
+package plugger.Element;
+
+import java.util.List;
 
 public class Elements{
-	Element element[];
-	short percentage[];
-	int compression[];
+	List<Element> element;
+	List<Short> percentage;
+	List<Integer> compression;
 	
-	public Element[] getElement() {return element;}
-	public void setElement(Element element[]) {this.element = element;}
-	public short[] getPercentage() {return percentage;}
-	public void setPercentage(short percentage[]) {this.percentage = percentage;}
-	public int[] getCompression() {return compression;}
-	public void setCompression(int compression[]) {this.compression = compression;}
+	public List<Element> getElement() {return element;}
+	public void setElement(List<Element> element) {this.element = element;}
+	public List<Short> getPercentage() {return percentage;}
+	public void setPercentage(List<Short> percentage) {this.percentage = percentage;}
+	public List<Integer> getCompression() {return compression;}
+	public void setCompression(List<Integer> compression) {this.compression = compression;}
 
 	
 	
-	public void add(Element[] element,short[] percentage,int[] compression){
+	public Elements(List<Element> element,List<Short> percentage,List<Integer> compression){
 		this.element=element;
 		this.percentage=percentage;
 		this.compression=compression;
 	}
-	
 }

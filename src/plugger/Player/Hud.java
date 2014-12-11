@@ -1,27 +1,24 @@
-package src.plugger.Player;
+package plugger.Player;
 
 import static org.lwjgl.opengl.GL11.glRotatef;
 import static org.lwjgl.opengl.GL11.glTranslatef;
 
 import org.lwjgl.opengl.GL11;
 
-
-import src.plugger.client.renderer.Tessellator;
-import src.plugger.view.Camera;
+import plugger.common.GameLoop;
+import plugger.entities.Camera;
 
 public class Hud {
+	/*
 	
 	
+	public boolean HudOpen=false;
 	
-	public static boolean HudOpen=false;
-	
-	
-	
-	public static void setHud(boolean hud){
+	public void setHud(boolean hud){
 		HudOpen=hud;
 	}
 	
-	public static void Hud(){
+	public void Hud(){
 		HudOpen=true;
 		
 		
@@ -31,11 +28,13 @@ public class Hud {
 			float[] array =new float[3];
 			try{
 			
-			//drawCircle3D(0,0,-0.5f,0.3f,10,1,1,0);
-			drawCircle3D(10,0,-0.5f,200,1);
-			drawCircle3D(9,0,-0.5f,200,1);
-			drawCircle3D(14,0,-0.5f,200,1);
+//			drawCircle3D(0,0,-0.5f,0.3f,10,1,1,0);
+//			drawCircle3D(10,0,-0.5f,200,1);
+//			drawCircle3D(9,0,-0.5f,200,1);
+//			drawCircle3D(14,0,-0.5f,200,1);
 			drawCircle3D(0,0,-0.5f,0.3f,10);
+	        
+	        
 			}catch(Exception e){
 				System.out.println(e);
 			}
@@ -47,7 +46,7 @@ public class Hud {
 		
 		
 	}
-	public static float[] PivotCamera(float x, float y, float z){
+	public float[] PivotCamera(float x, float y, float z){
 		float[] Retrnables=new float[3];
 		
 		Retrnables[0]=-x;//+100*(Camera.yaw()/360);
@@ -58,7 +57,7 @@ public class Hud {
 		
 		return Retrnables;
 	}
-	public static void drawCircle3D(float x, float y, float z ,int num_segments, int Dir){
+	public void drawCircle3D(float x, float y, float z ,int num_segments, int Dir){
 		double x2=0;double y2=0;double z2=0;float amt= 0.5f;float angle=0;
 		GL11.glDisable(GL11.GL_TEXTURE_2D);
 		GL11.glColor4f(0.4F,0.4F,0F,0);
@@ -79,13 +78,15 @@ public class Hud {
 
 	
 	
-	public static void drawCircle3D(float x, float y, float z ,float amt,int num_segments){
+	public void drawCircle3D(float x, float y, float z ,float amt,int num_segments){
+		Camera camera = GameLoop.draw.camera;
+		
 		double x2=0;double y2=0;double z2=0;float angle=0;
 		
-		glTranslatef(-Camera.getX()+x,-Camera.getY()+y,-Camera.getZ());
-		glRotatef(-Camera.roll(),0.0f,0.0f,1.0f);
-		glRotatef(-Camera.yaw(),0.0f,1.0f,0.0f);
-		glRotatef(-Camera.pitch(),1.0f,0.0f,0.0f);
+		glTranslatef(-camera.getYaw()+x,-camera.getYaw()+y,-camera.getYaw());
+		glRotatef(-camera.getRoll(),0.0f,0.0f,1.0f);
+		glRotatef(-camera.getYaw(),0.0f,1.0f,0.0f);
+		glRotatef(-camera.getPitch(),1.0f,0.0f,0.0f);
 		
 		GL11.glDisable(GL11.GL_TEXTURE_2D);
 		GL11.glColor4f(0.4F,0.4F,0F,0);
@@ -102,13 +103,13 @@ public class Hud {
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
 		
 	}
-	public static void drawCircle3D(float x, float y, float z ,float amt,int num_segments,float x2,float y2, float z2){
+	public void drawCircle3D(float x, float y, float z ,float amt,int num_segments,float x2,float y2, float z2){
 		double x3=0;double y3=0;double z3=0;float angle=0;
 		
 		glTranslatef(0,10,5);
 		/*glRotatef(-Camera.roll(),0.0f,0.0f,1.0f);
 		glRotatef(-Camera.yaw(),0.0f,1.0f,0.0f);
-		glRotatef(-Camera.pitch(),1.0f,0.0f,0.0f);*/
+		glRotatef(-Camera.pitch(),1.0f,0.0f,0.0f);*//*
 		
 		GL11.glDisable(GL11.GL_TEXTURE_2D);
 		GL11.glColor4f(0.4F,0.4F,0F,0);
@@ -143,7 +144,7 @@ public class Hud {
 		}
 		ret=x-amt;
 		return ret;
-	}*/
+	}*//*
 	public static void drawLine3D(float x, float y, float z,float x2, float y2, float z2){
 		GL11.glDisable(GL11.GL_TEXTURE_2D);
 		GL11.glColor4f(0.4F,0.4F,0F,0);
@@ -184,5 +185,5 @@ public class Hud {
 		tessellator.draw();
 		GL11.glEnable(GL11.GL_TEXTURE_2D);
 	}
-	
+	*/
 }

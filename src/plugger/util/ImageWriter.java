@@ -1,10 +1,10 @@
-package src.plugger.util;
+package plugger.util;
 
 import javax.imageio.ImageIO;
 import javax.imageio.stream.FileImageOutputStream;
 import javax.imageio.stream.ImageOutputStream;
 
-import src.plugger.util.GifSequenceWriter;
+import plugger.util.GifSequenceWriter;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;

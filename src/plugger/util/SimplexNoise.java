@@ -1,4 +1,4 @@
-package src.plugger.util;
+package plugger.util;
 
 import java.util.Random;
 

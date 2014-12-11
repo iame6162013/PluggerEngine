@@ -1,12 +1,14 @@
-package src.plugger.world;
+package plugger.world;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
-import src.plugger.Element.Element;
-import src.plugger.Element.Elements;
-import src.plugger.util.ImageWriter;
-import src.plugger.util.SimplexNoise;
-import src.plugger.world.chunk.Chunk;
+import plugger.Element.Element;
+import plugger.Element.Elements;
+import plugger.util.ImageWriter;
+import plugger.util.SimplexNoise;
+import plugger.world.chunk.Chunk;
 import java.nio.ByteBuffer;
 
 import org.lwjgl.BufferUtils;
@@ -23,21 +25,13 @@ public class world {
 		
 		int amount=40;
 		
-		Elements[][][] compostition=new Elements[amount][amount][amount];
-		for(int x=0; x<compostition.length;x++){
-			for(int y=0; y<compostition.length;y++){
-				for(int z=0; z<compostition.length;z++){
-					compostition[x][y][z]=new Elements();
-				}
-			}
-			
-		}
+		List<Elements> compostition=new ArrayList<Elements>();
 		
 		
 		
-		Element[] elem=new Element[100];
-		short[] perc=new short[100];
-		int[] comp=new int[100];
+		List<Element> elem=new ArrayList<Element>();
+		List<Short> perc=new ArrayList<Short>();
+		List<Integer> comp=new ArrayList<Integer>();
 
 		
 		SimplexNoise simplexNoise=new SimplexNoise(50,0.5,207);
@@ -49,11 +43,11 @@ public class world {
 				for(int z=0;z<amount;z++){
 					if(simplexNoise.getNoise(x,y,z)>=0.5f){
 						
-						elem[0]=Element.forAtomicNumber((int) random.nextInt(100));
-						perc[0]=(short) random.nextInt();
-						comp[0]=(int) random.nextInt();
-						compostition[x][y][z].add(elem, perc, comp);
-						addBlock(x,y,z, compostition[x][y][z]);
+						elem.add(Element.forAtomicNumber((int) random.nextInt(100)));
+						perc.add((short) random.nextInt());
+						comp.add((int) random.nextInt());
+						compostition.add(new Elements(elem, perc, comp));
+						//addBlock(x,y,z, compostition.get(x));
 					}
 					//pixel = (short) (simplexNoise.getNoise(x,y,z)*255);
 					//if (pixel<0){pixel=0;}

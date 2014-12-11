@@ -1,4 +1,4 @@
-package src.plugger.Element;
+package plugger.Element;
 
 import java.util.HashMap;
 import java.util.Map;

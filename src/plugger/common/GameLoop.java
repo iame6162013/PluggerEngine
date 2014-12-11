@@ -1,26 +1,16 @@
-package src.plugger.common;
+package plugger.common;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.nio.file.Path;
-
-import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.Display;
-import org.newdawn.slick.opengl.Texture;
-import org.newdawn.slick.opengl.TextureLoader;
 
-import static org.lwjgl.opengl.GL11.*;
-
-import src.plugger.Player.player;
-import src.plugger.common.GameLoop;
+import plugger.Player.Player;
+import plugger.common.GameLoop;
 
 public class GameLoop{
 	private static final int maxFrameRate = 50;
 	
 	private static int frames=0;
 	static int fps = 0;
-	static int FpsRate=20;
+	static int FpsRate=60;
 	static int tick = 0;
 	static int tickRate = 20;
 	static int ticksPs = 0;
@@ -28,7 +18,16 @@ public class GameLoop{
 	static long secondStart2 = System.currentTimeMillis();
 	static long tickStart = System.currentTimeMillis();
 	static float x=0;
+	public static Drawer draw = new Drawer();
+	public static Player player = new Player();
 	
+	public static void start(){
+		
+		
+		//Chunk.ChunkInit();
+		//world.LoadWorldFromCode();
+		GameLoop.gameloop();
+	}
 	
 	/**Main game loop */
 	public static void gameloop() {
@@ -83,16 +82,20 @@ public class GameLoop{
 	}
 	/**EVERY FRAME OPERATIONS*/
 	private static void updateFrame(){
-		renderer.draw();
+		draw.draw();
 		Display.update();
 		System.gc();
 	}
 	/**EVERY SECOND OPERATIONS*/
 	private static void updateESO(){
-		/*System.out.println("TickRatePS:"+ticksPs);
-		System.out.println("TickRate:"+tickRate);
-		System.out.println("FPS:"+fps);
-		System.out.println("FpsRate:"+FpsRate);*/
+		//System.out.println("TickRatePS:"+ticksPs);
+		System.out.println("TickRate:"+tickRate+" FPS:"+fps);
+		System.out.println();
+		//System.out.println("FpsRate:"+FpsRate);*/
+	}
+
+	public static void cleanUp() {
+		draw.cleanUp();
 	}
 	
 	

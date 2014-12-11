@@ -1,4 +1,4 @@
-package src.plugger.util;
+package plugger.util;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
