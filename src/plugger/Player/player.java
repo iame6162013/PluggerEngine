@@ -27,11 +27,11 @@ public class Player {
 		if(Keyboard.isKeyDown(Keyboard.KEY_NUMPAD7)){cam.rotateZ(-2f);}
 		if(Keyboard.isKeyDown(Keyboard.KEY_NUMPAD9)){cam.rotateZ(2f);}
 		//Yaw
-		if(Keyboard.isKeyDown(Keyboard.KEY_NUMPAD4)){cam.rotateX(-2f);}
-		if(Keyboard.isKeyDown(Keyboard.KEY_NUMPAD6)){cam.rotateX(2f);}
+		if(Keyboard.isKeyDown(Keyboard.KEY_NUMPAD4)){cam.rotateX(-10f);}
+		if(Keyboard.isKeyDown(Keyboard.KEY_NUMPAD6)){cam.rotateX(10f);}
 		//Pitch
-		if(Keyboard.isKeyDown(Keyboard.KEY_NUMPAD8)){cam.rotateY(-2f);}
-		if(Keyboard.isKeyDown(Keyboard.KEY_NUMPAD2)){cam.rotateY(2f);}
+		if(Keyboard.isKeyDown(Keyboard.KEY_NUMPAD8)){cam.rotateY(-10f);}
+		if(Keyboard.isKeyDown(Keyboard.KEY_NUMPAD2)){cam.rotateY(10f);}
 
 		
 		

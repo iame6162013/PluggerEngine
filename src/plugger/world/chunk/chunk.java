@@ -1,76 +1,74 @@
 package plugger.world.chunk;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.lwjgl.util.vector.Vector3f;
+
 import plugger.Element.Element;
 import plugger.Element.Elements;
 import plugger.world.chunk.PossitionId;
 
 public class Chunk {
-	public static int chunkSize=6;
+	public int chunkSize=6;
+	public byte ChunkSize = 32;
+	public List<PossitionId> PosId=new ArrayList<PossitionId>();
 	
-	public static PossitionId[][][] PosId=new PossitionId[chunkSize][chunkSize][chunkSize];
 	
 	int CHUNK_X;
 	int CHUNK_Y;
 	int CHUNK_Z;
 	
-	public static void ChunkInit(){
-		int l=chunkSize-1;
-		for (int i=0; i<l; i++){
-			for (int j=0; j<l; j++){
-				for (int k=0; k<l; k++){
-					PosId[i][j][k]= new PossitionId();
-	}	}	}	}
-	
-	
-	public void addBlock(int x,int y,int z,Elements compostition,int sizeX,int sizeY, int sizeZ){
-		int x2=0;
-		int y2=0;
-		int z2=0;
-		
-		while(x>=(getDefaultChunkSize())){
-			x-=getDefaultChunkSize();
-			x2++;
-		}
-		while(y>=(getDefaultChunkSize())){
-			y-=getDefaultChunkSize();
-			y2++;
-		}
-		while(z>=(getDefaultChunkSize())){
-			z-=getDefaultChunkSize();
-			z2++;
-		}
-		
-		
-		PosId[x2][y2][z2].addBlock(x, y, z, compostition, sizeX, sizeY, sizeZ);
+	public int ObjInChunk(int chunk){
+		return PosId.get(chunk).size();
 	}
+	
+	public Vector3f getPos(int chunk, int numb){
+		return PosId.get(chunk).getPos(numb);
+	}
+	
+	public void setBlock(int x,int y,int z,Elements compostition){
+		int ChunkX=0;int ChunkY=0;int ChunkZ=0;int i=1;
+
+		while(x>=ChunkSize){
+			x-=ChunkSize;
+			ChunkX++;
+		}
+		while(y>=ChunkSize){
+			y-=ChunkSize;
+			ChunkY++;
+		}
+		while(z>=ChunkSize){
+			z-=ChunkSize;
+			ChunkZ++;
+		}
+		while(PosId.size()<i){
+			PosId.add(new PossitionId());
+		}
+		PosId.get(0).setBlock(new Vector3f(x, y, z), compostition);
+	}
+	
 	public Elements getBlockInChunk(int x,int y, int z){
-		int x2=0;
-		int y2=0;
-		int z2=0;
-		
-		while(x>=(getDefaultChunkSize())){
-			x-=getDefaultChunkSize();
-			x2++;
+		int ChunkX=0;int ChunkY=0;int ChunkZ=0;int i=1;
+
+		while(x>=ChunkSize){
+			x-=ChunkSize;
+			ChunkX++;
 		}
-		while(y>=(getDefaultChunkSize())){
-			y-=getDefaultChunkSize();
-			y2++;
+		while(y>=ChunkSize){
+			y-=ChunkSize;
+			ChunkY++;
 		}
-		while(z>=(getDefaultChunkSize())){
-			z-=getDefaultChunkSize();
-			z2++;
+		while(z>=ChunkSize){
+			z-=ChunkSize;
+			ChunkZ++;
 		}
-		return PosId[x2][y2][z2].getBlock(x,y,z);
+		while(PosId.size()<i){
+			PosId.add(new PossitionId());
+		}
+		return PosId.get(0).getBlock(new Vector3f(x,y,z));
 	}
-	public int getChunkSize(int ChunkX,int ChunkY,int ChunkZ){
-		return PosId[ChunkX][ChunkY][ChunkZ].sizeChunk();
-	}
-	public boolean isLoaded(int ChunkX,int ChunkY,int ChunkZ){
-		return PosId[ChunkX][ChunkY][ChunkZ].isLoaded;
-	}
-	public static int getDefaultChunkSize() {
-		return 32;
-	}
+
 	
 	
 	

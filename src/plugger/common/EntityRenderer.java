@@ -18,15 +18,6 @@ import plugger.models.RawModel;
 import plugger.models.TexturedModel;
 
 public class EntityRenderer {
-	
-
-
-	
-	
-	
-	
-	
-	
 	StaticShader shader;
 	
 	
@@ -78,75 +69,4 @@ public class EntityRenderer {
 		Matrix4f transformationMatrix = Maths.createTransforMationMatrix(entity.getPosition(), entity.getRotX(), entity.getRotY(), entity.getRotZ(), entity.getScale());
 		shader.loadTransformationMatrix(transformationMatrix);
 	}
-
-	
-	//////////////////////////////////////////
-	
-	
-	
-	
-	
-	
-	
-	public static void renderBaseCube(float x,float y,float z){
-		
-		
-		
-		
-		/*glPushMatrix();
-			
-			glTranslatef(x,y,z);
-			glBegin(GL_QUADS);{
-				float min=0f;
-				float max=1f;
-					
-					//BackFace
-					glColor3f(max,0.6f,max);
-					glTexCoord2f(0,0);glVertex3f(min,min,min);
-					glTexCoord2f(0,max);glVertex3f(min,max,min);
-					glTexCoord2f(max,max);glVertex3f(max,max,min);
-					glTexCoord2f(max,0);glVertex3f(max,min,min);
-					//FrontFace
-					glColor3f(max,0.5f,max);
-					glTexCoord2f(max,0);glVertex3f(max,min,max);
-					glTexCoord2f(max,max);glVertex3f(max,max,max);
-					glTexCoord2f(0,max);glVertex3f(min,max,max);
-					glTexCoord2f(0,0);glVertex3f(min,min,max);
-					//LeftFace
-					glColor3f(max,0.8f,max);
-					glTexCoord2f(0,0);glVertex3f(min,min,min);
-					glTexCoord2f(0,max);glVertex3f(min,min,max);
-					glTexCoord2f(max,max);glVertex3f(min,max,max);
-					glTexCoord2f(max,0);glVertex3f(min,max,min);
-					//RightFace
-					glColor3f(max,0.2f,max);
-					glTexCoord2f(max,0);glVertex3f(max,max,min);
-					glTexCoord2f(max,max);glVertex3f(max,max,max);
-					glTexCoord2f(0,max);glVertex3f(max,min,max);
-					glTexCoord2f(0,0);glVertex3f(max,min,min);
-					//BottomFace
-					glColor3f(max,0.3f,max);
-					glTexCoord2f(0,0);glVertex3f(min,min,min);
-					glTexCoord2f(0,max);glVertex3f(max,min,min);
-					glTexCoord2f(max,max);glVertex3f(max,min,max);
-					glTexCoord2f(max,0);glVertex3f(min,min,max);
-					//TopFace
-					glColor3f(max,0.4f,max);
-					glTexCoord2f(max,0);glVertex3f(min,max,max);
-					glTexCoord2f(max,max);glVertex3f(max,max,max);
-					glTexCoord2f(0,max);glVertex3f(max,max,min);
-					glTexCoord2f(0,0);glVertex3f(min,max,min);
-					
-					
-			}
-			glEnd();
-		glPopMatrix();*/
-	}
-	
-	
-	
-	
-	
-	
-	
 }

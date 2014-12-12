@@ -4,6 +4,8 @@ import org.lwjgl.opengl.Display;
 
 import plugger.Player.Player;
 import plugger.common.GameLoop;
+import plugger.world.world;
+import plugger.world.chunk.Chunk;
 
 public class GameLoop{
 	private static final int maxFrameRate = 50;
@@ -22,10 +24,7 @@ public class GameLoop{
 	public static Player player = new Player();
 	
 	public static void start(){
-		
-		
-		//Chunk.ChunkInit();
-		//world.LoadWorldFromCode();
+		world.LoadWorldFromCode();
 		GameLoop.gameloop();
 	}
 	

@@ -37,6 +37,7 @@ public class MasterRenderer {
 	
 	MasterRenderer(){
 		createProjectionMatrix();
+		GL11.glEnable(GL11.GL_DEPTH_TEST);
 		renderer = new EntityRenderer(shader, projectionMatrix);
 	}
 	
@@ -77,6 +78,7 @@ public class MasterRenderer {
 	}
 	
 	public void prepare(){
+		
 		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
 		GL11.glClearColor(skyColor.x, skyColor.y, skyColor.z, 1);
 	}

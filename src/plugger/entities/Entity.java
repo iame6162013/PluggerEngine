@@ -2,6 +2,7 @@ package plugger.entities;
 
 import org.lwjgl.util.vector.Vector3f;
 
+import plugger.Element.Elements;
 import plugger.models.TexturedModel;
 
 public class Entity {
@@ -12,9 +13,11 @@ public class Entity {
 	private Vector3f position;
 	private float rotX,rotY,rotZ;
 	private float scale;
+	private String name;
 	
-	public Entity(TexturedModel model, Vector3f position, float rotX, float rotY, float rotZ, float scale) {
+	public Entity(String name,TexturedModel model, Vector3f position, float rotX, float rotY, float rotZ, float scale) {
 		super();
+		this.name=name;
 		this.model = model;
 		this.position = position;
 		this.rotX = rotX;
