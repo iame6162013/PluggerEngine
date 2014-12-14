@@ -12,12 +12,11 @@ import org.lwjgl.opengl.GL11;
 import org.lwjgl.util.vector.Matrix4f;
 import org.lwjgl.util.vector.Vector3f;
 
-import plugger.entities.Camera;
-import plugger.entities.Entity;
-import plugger.entities.Light;
+import plugger.Entity.Camera;
+import plugger.Entity.Entity;
+import plugger.Entity.Light;
 import plugger.models.TexturedModel;
 import plugger.shaders.StaticShader;
-import plugger.shaders.TerrainShader;
 
 public class MasterRenderer {
 	
@@ -78,7 +77,6 @@ public class MasterRenderer {
 	}
 	
 	public void prepare(){
-		
 		GL11.glClear(GL11.GL_COLOR_BUFFER_BIT | GL11.GL_DEPTH_BUFFER_BIT);
 		GL11.glClearColor(skyColor.x, skyColor.y, skyColor.z, 1);
 	}

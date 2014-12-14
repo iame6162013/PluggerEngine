@@ -10,11 +10,11 @@ public class ModelTexture {
 	private boolean hasTransparency = false;
 	private boolean useFakeLighting = false;
 	
-	public boolean isHasTransparency() {
+	public boolean HasTransparency() {
 		return hasTransparency;
 	}
 	
-	public boolean isUseFakeLighting() {
+	public boolean UseFakeLighting() {
 		return useFakeLighting;
 	}
 

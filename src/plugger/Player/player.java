@@ -1,14 +1,32 @@
 package plugger.Player;
 
-import org.lwjgl.input.Keyboard;
+import java.util.ArrayList;
+import java.util.List;
 
+import org.lwjgl.input.Keyboard;
+import org.lwjgl.util.vector.Vector3f;
+
+import plugger.Element.Elements;
+import plugger.Entity.Camera;
+import plugger.Entity.Entity;
 import plugger.common.Drawer;
 import plugger.common.GameLoop;
 import plugger.common.MasterRenderer;
 import plugger.common.EntityRenderer;
-import plugger.entities.Camera;
+import plugger.models.TexturedModel;
 
-public class Player {
+public class Player extends Entity{
+	
+	List<Object> obj = new ArrayList<Object>();
+	
+	public Player(String id, TexturedModel model, Vector3f position,float rotX, float rotY, float rotZ, float scale) {
+		super(id, model, position, rotX, rotY, rotZ, scale);
+	}
+	
+	public void move(){
+		Input();
+		super.increasePosition(1, 1, 1);
+	}
 	
 	public void Input() {
 		Camera cam=GameLoop.draw.camera;
@@ -33,8 +51,12 @@ public class Player {
 		if(Keyboard.isKeyDown(Keyboard.KEY_NUMPAD8)){cam.rotateY(-10f);}
 		if(Keyboard.isKeyDown(Keyboard.KEY_NUMPAD2)){cam.rotateY(10f);}
 
-		
-		
+		int i= GameLoop.world.getChunk(0).size()-1;
+		if(Keyboard.isKeyDown(Keyboard.KEY_O)){obj.add(GameLoop.world.getChunk(0).getId(i));obj.add(GameLoop.world.getChunk(0).getModel(i));obj.add(GameLoop.world.getChunk(0).getPos(i));GameLoop.world.getChunk(0).removeBlock(i);}
+		if(Keyboard.isKeyDown(Keyboard.KEY_P)){GameLoop.world.getChunk(0).addBlock(new Entity((String)obj.get(0), (TexturedModel)obj.get(1), (Vector3f)obj.get(2), 0, 0, 0, 1));}
+		if(Keyboard.isKeyDown(Keyboard.KEY_I)){System.out.println("WORLD NUMBER ENTITIES: "+GameLoop.world.getChunk(0).size()+" DRAWER: "+GameLoop.draw.getEntityAmount());}
+		if(Keyboard.isKeyDown(Keyboard.KEY_U)){GameLoop.world.getChunk(0).changePosBlock(3, new Vector3f(4,4,4));}
+		if(Keyboard.isKeyDown(Keyboard.KEY_Y)){GameLoop.draw.rebuild();}
 	}
 	
 	

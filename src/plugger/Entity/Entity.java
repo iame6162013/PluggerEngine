@@ -1,8 +1,7 @@
-package plugger.entities;
+package plugger.Entity;
 
 import org.lwjgl.util.vector.Vector3f;
 
-import plugger.Element.Elements;
 import plugger.models.TexturedModel;
 
 public class Entity {
@@ -13,11 +12,11 @@ public class Entity {
 	private Vector3f position;
 	private float rotX,rotY,rotZ;
 	private float scale;
-	private String name;
+	private String id;
 	
-	public Entity(String name,TexturedModel model, Vector3f position, float rotX, float rotY, float rotZ, float scale) {
+	public Entity(String id,TexturedModel model, Vector3f position, float rotX, float rotY, float rotZ, float scale) {
 		super();
-		this.name=name;
+		this.id=id;
 		this.model = model;
 		this.position = position;
 		this.rotX = rotX;
@@ -26,6 +25,13 @@ public class Entity {
 		this.scale = scale;
 	}
 	
+	public void changeId(String id){
+		this.id=id;
+	}
+	
+	public String getId(){
+		return id;
+	}
 	public void increaseRotation(float dx, float dy, float dz){
 		this.rotX+=dx;
 		this.rotY+=dy;

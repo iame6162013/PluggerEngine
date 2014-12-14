@@ -4,24 +4,23 @@ import org.lwjgl.opengl.Display;
 
 import plugger.Player.Player;
 import plugger.common.GameLoop;
-import plugger.world.world;
-import plugger.world.chunk.Chunk;
+import plugger.world.World;
 
 public class GameLoop{
-	private static final int maxFrameRate = 50;
+	private final int maxFrameRate = 50;
 	
-	private static int frames=0;
+	private int frames=0;
 	static int fps = 0;
 	static int FpsRate=60;
 	static int tick = 0;
-	static int tickRate = 20;
+	static int tickRate = 60;
 	static int ticksPs = 0;
 	static long secondStart = System.currentTimeMillis();
 	static long secondStart2 = System.currentTimeMillis();
 	static long tickStart = System.currentTimeMillis();
 	static float x=0;
 	public static Drawer draw = new Drawer();
-	public static Player player = new Player();
+	public static World world = new World();
 	
 	public static void start(){
 		world.LoadWorldFromCode();
@@ -76,7 +75,7 @@ public class GameLoop{
 	
 	/**EVERY TICK OPERATIONS*/
 	private static void updateTick(){
-		player.Input();
+		world.player.Input();
 		System.gc();
 	}
 	/**EVERY FRAME OPERATIONS*/
@@ -87,15 +86,16 @@ public class GameLoop{
 	}
 	/**EVERY SECOND OPERATIONS*/
 	private static void updateESO(){
-		//System.out.println("TickRatePS:"+ticksPs);
+		System.out.println("TickRatePS:"+ticksPs);
 		System.out.println("TickRate:"+tickRate+" FPS:"+fps);
-		System.out.println();
 		//System.out.println("FpsRate:"+FpsRate);*/
 	}
 
 	public static void cleanUp() {
 		draw.cleanUp();
 	}
+
+	
 	
 	
 	

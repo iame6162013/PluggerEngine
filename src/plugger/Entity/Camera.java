@@ -1,4 +1,4 @@
-package plugger.entities;
+package plugger.Entity;
 
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.util.vector.Vector3f;
@@ -9,6 +9,8 @@ public class Camera {
 	private float yaw;
 	private float pitch;
 	private float roll;
+	
+	
 	
 	public Camera(){}
 	

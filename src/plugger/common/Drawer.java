@@ -2,30 +2,22 @@ package plugger.common;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 import org.lwjgl.util.vector.Vector3f;
 
-import plugger.entities.Camera;
-import plugger.entities.Entity;
-import plugger.entities.Light;
+import plugger.Entity.Camera;
+import plugger.Entity.Entity;
+import plugger.Entity.Light;
 import plugger.models.OBJLoader;
 import plugger.models.RawModel;
 import plugger.models.TexturedModel;
 import plugger.textures.ModelTexture;
-import plugger.world.world;
-import plugger.world.chunk.Chunk;
 
 public class Drawer {
-	
-	RawModel model;
-	ModelTexture texturedModel;
-	TexturedModel staticModel;
-	ModelTexture texture ;
 	List<Entity> allEntities = new ArrayList<Entity>();
 	Light light;
 	public Camera camera;
-	Loader loader = new Loader();
+	public Loader loader = new Loader();
 	
 	public MasterRenderer render = new MasterRenderer();
 	
@@ -34,26 +26,43 @@ public class Drawer {
 		camera = new Camera();
 	}
 	
-	public void draw(){
-		RawModel model = OBJLoader.loadObjModel("LitleHead", loader);
-		TexturedModel TModel = new TexturedModel(model, new ModelTexture(loader.loadTexture("Grass")));
-		TModel.getTexture().setHasTransparency(true);
-		TModel.getTexture().setUseFakeLighting(true);
-		
-		for(int i=0;i<world.chunk.ObjInChunk(0);i++){
-			allEntities.add(new Entity("Fern", TModel, world.chunk.getPos(0,i), 0, 0, 0f, 1f));
+	public void removeEntityFromWorld(int numb){
+		allEntities.remove(numb);
+	}
+	
+	public void addEntity(Entity entity){
+		allEntities.add(entity);
+	}
+	
+	public void addEntityFromWorld(int chunkN, int blockN){
+		allEntities.add(new Entity("Fern", GameLoop.world.getChunk(chunkN).getModel(blockN), GameLoop.world.getChunk(chunkN).getPos(blockN), 0, 0, 0, 1f));
+	}
+	
+	public int getEntityAmount(){
+		return allEntities.size();
+	}
+	
+	public void rebuild(){
+		allEntities.clear();
+		for(int numb=0;numb<GameLoop.world.getChunk(0).size();numb++){
+			allEntities.add(new Entity("Fern", GameLoop.world.getChunk(0).getModel(numb), GameLoop.world.getChunk(0).getPos(numb), 0, 0, 0, 1f));
 		}
-		
+	}
+	
+	public void draw(){
 		light.setposition(camera.getPostition());
 		for(Entity entity:allEntities){
-			render.processEntity(entity);
+			try{
+				render.processEntity(entity);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
 		}
+		
 		render.render(light, camera);
-		
-		
-		
 	}
 	public void cleanUp(){
+		
 		render.cleanUp();
 	}
 }

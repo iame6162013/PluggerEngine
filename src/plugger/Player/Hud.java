@@ -5,8 +5,8 @@ import static org.lwjgl.opengl.GL11.glTranslatef;
 
 import org.lwjgl.opengl.GL11;
 
+import plugger.Entity.Camera;
 import plugger.common.GameLoop;
-import plugger.entities.Camera;
 
 public class Hud {
 	/*

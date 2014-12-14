@@ -9,7 +9,7 @@ import org.lwjgl.opengl.PixelFormat;
 import org.lwjgl.util.vector.Vector2f;
 
 
-public class PluggerFrame {
+public class Main {
 	
 	private static final int WIDTH = 1280; 
 	private static final int HEIGHT = 720; 
@@ -18,15 +18,11 @@ public class PluggerFrame {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		
-		
 		initDisplay();
 		GameLoop.start();
-		
 		cleanUp();
 		System.exit(0);
 	}
-	
 	
 	public static void initDisplay(){
 		try {
@@ -48,8 +44,7 @@ public class PluggerFrame {
 	
 	
 	
-	public static void Render()
-	{
+	public static void Render(){
 		Display.update();
 	}
 	public static boolean IsCloseRequested()

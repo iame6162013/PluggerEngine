@@ -3,7 +3,7 @@ package plugger.util;
 import org.lwjgl.util.vector.Matrix4f;
 import org.lwjgl.util.vector.Vector3f;
 
-import plugger.entities.Camera;
+import plugger.Entity.Camera;
 
 public class Maths {
 	

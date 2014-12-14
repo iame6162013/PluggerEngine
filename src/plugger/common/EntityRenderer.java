@@ -13,7 +13,7 @@ import org.lwjgl.util.vector.Matrix4f;
 import plugger.shaders.StaticShader;
 import plugger.textures.ModelTexture;
 import plugger.util.Maths;
-import plugger.entities.Entity;
+import plugger.Entity.Entity;
 import plugger.models.RawModel;
 import plugger.models.TexturedModel;
 
@@ -48,10 +48,10 @@ public class EntityRenderer {
 		GL20.glEnableVertexAttribArray(1);
 		GL20.glEnableVertexAttribArray(2);
 		ModelTexture texture = model.getTexture();
-		if(texture.isHasTransparency()){
+		if(texture.HasTransparency()){
 			MasterRenderer.disableCulling();
 		}
-		shader.loadFakeLightingVariable(texture.isUseFakeLighting());
+		shader.loadFakeLightingVariable(texture.UseFakeLighting());
 		shader.loadShineVariable(texture.getShineDamper(), texture.getReflectivity());
 		GL13.glActiveTexture(GL13.GL_TEXTURE0);
 		GL11.glBindTexture(GL11.GL_TEXTURE_2D, model.getTexture().getID());
