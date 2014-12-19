@@ -5,7 +5,6 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
-import org.lwjgl.opengl.PixelFormat;
 import org.lwjgl.util.vector.Vector2f;
 
 
@@ -24,6 +23,9 @@ public class Main {
 		System.exit(0);
 	}
 	
+	
+	
+	
 	public static void initDisplay(){
 		try {
 			Display.setDisplayMode(new DisplayMode(WIDTH,HEIGHT));
@@ -36,13 +38,6 @@ public class Main {
 			e.printStackTrace();
 		}
 	}
-	
-	
-	
-	
-	
-	
-	
 	
 	public static void Render(){
 		Display.update();
@@ -73,7 +68,7 @@ public class Main {
 	}
 	private static void cleanUp(){
 		
-		GameLoop.cleanUp();
+		GameLoop.gameloop.cleanUp();
 		Keyboard.destroy();
 		Display.destroy();
 		Mouse.destroy();

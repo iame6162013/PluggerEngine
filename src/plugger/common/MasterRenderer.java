@@ -1,7 +1,5 @@
 package plugger.common;
 
-import static org.lwjgl.opengl.GL11.glLoadIdentity;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -36,6 +34,7 @@ public class MasterRenderer {
 	
 	MasterRenderer(){
 		createProjectionMatrix();
+		GL11.glLoadIdentity();
 		GL11.glEnable(GL11.GL_DEPTH_TEST);
 		renderer = new EntityRenderer(shader, projectionMatrix);
 	}

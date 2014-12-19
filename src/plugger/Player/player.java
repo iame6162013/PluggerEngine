@@ -6,26 +6,31 @@ import java.util.List;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.util.vector.Vector3f;
 
-import plugger.Element.Elements;
 import plugger.Entity.Camera;
 import plugger.Entity.Entity;
-import plugger.common.Drawer;
 import plugger.common.GameLoop;
-import plugger.common.MasterRenderer;
-import plugger.common.EntityRenderer;
+import plugger.common.GameRegistry;
 import plugger.models.TexturedModel;
 
 public class Player extends Entity{
 	
 	List<Object> obj = new ArrayList<Object>();
 	
-	public Player(String id, TexturedModel model, Vector3f position,float rotX, float rotY, float rotZ, float scale) {
-		super(id, model, position, rotX, rotY, rotZ, scale);
+	public Player(String id, TexturedModel model, Vector3f position,float rotX, float rotY, float rotZ, int weight) {
+		super(id, model, position, rotX, rotY, rotZ, weight);
 	}
 	
 	public void move(){
 		Input();
 		super.increasePosition(1, 1, 1);
+	}
+	
+	public void increaseWeight(){
+		
+	}
+	
+	public int getWeight(){
+		return 20;
 	}
 	
 	public void Input() {
@@ -53,10 +58,17 @@ public class Player extends Entity{
 
 		int i= GameLoop.world.getChunk(0).size()-1;
 		if(Keyboard.isKeyDown(Keyboard.KEY_O)){obj.add(GameLoop.world.getChunk(0).getId(i));obj.add(GameLoop.world.getChunk(0).getModel(i));obj.add(GameLoop.world.getChunk(0).getPos(i));GameLoop.world.getChunk(0).removeBlock(i);}
-		if(Keyboard.isKeyDown(Keyboard.KEY_P)){GameLoop.world.getChunk(0).addBlock(new Entity((String)obj.get(0), (TexturedModel)obj.get(1), (Vector3f)obj.get(2), 0, 0, 0, 1));}
+		if(Keyboard.isKeyDown(Keyboard.KEY_P)){GameLoop.world.getChunk(0).addBlock(new Entity((String)obj.get(0), (TexturedModel)obj.get(1), (Vector3f)obj.get(2), 0, 0, 0,60));}
 		if(Keyboard.isKeyDown(Keyboard.KEY_I)){System.out.println("WORLD NUMBER ENTITIES: "+GameLoop.world.getChunk(0).size()+" DRAWER: "+GameLoop.draw.getEntityAmount());}
 		if(Keyboard.isKeyDown(Keyboard.KEY_U)){GameLoop.world.getChunk(0).changePosBlock(3, new Vector3f(4,4,4));}
 		if(Keyboard.isKeyDown(Keyboard.KEY_Y)){GameLoop.draw.rebuild();}
+	}
+
+	public void loadHud() {
+		GameRegistry.addHudMess("This is the games hud here will stats be displayed");
+		GameRegistry.addHudMess2("TPS: ",GameLoop.class,"tps");
+		GameRegistry.addHudMess2("FPS: ",GameLoop.class,"fps");
+		GameRegistry.addHudMess2("Weight: ",Player.class,"getWeight");
 	}
 	
 	

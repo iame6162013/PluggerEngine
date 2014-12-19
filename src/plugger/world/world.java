@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import plugger.Element.Element;
-import plugger.Element.Elements;
 import plugger.Entity.Entity;
 import plugger.Player.Player;
 import plugger.common.GameLoop;
@@ -62,7 +60,7 @@ public class World {
 	
 	public void LoadWorldFromCode(){
 		System.out.println("out");
-		int amount=5;
+		int amount=2;
 		SimplexNoise simplexNoise=new SimplexNoise(10,0.5f,207);
 		for(int x=0;x<amount;x++){
 			for(int y=0;y<amount;y++){

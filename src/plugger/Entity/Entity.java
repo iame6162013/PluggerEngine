@@ -11,18 +11,18 @@ public class Entity {
 	private TexturedModel model;
 	private Vector3f position;
 	private float rotX,rotY,rotZ;
-	private float scale;
 	private String id;
+	private int weight;
 	
-	public Entity(String id,TexturedModel model, Vector3f position, float rotX, float rotY, float rotZ, float scale) {
+	public Entity(String id,TexturedModel model, Vector3f position, float rotX, float rotY, float rotZ, int weight) {
 		super();
 		this.id=id;
-		this.model = model;
-		this.position = position;
-		this.rotX = rotX;
-		this.rotY = rotY;
-		this.rotZ = rotZ;
-		this.scale = scale;
+		this.model=model;
+		this.position=position;
+		this.rotX=rotX;
+		this.rotY=rotY;
+		this.rotZ=rotZ;
+		this.weight=weight;
 	}
 	
 	public void changeId(String id){
@@ -84,12 +84,12 @@ public class Entity {
 		this.rotZ = rotZ;
 	}
 
-	public float getScale() {
-		return scale;
+	public int getWeihgt() {
+		return weight;
 	}
 
-	public void setScale(float scale) {
-		this.scale = scale;
+	public void setWseight(int weight) {
+		this.weight = weight;
 	}
 	
 	

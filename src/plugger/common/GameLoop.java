@@ -1,34 +1,32 @@
 package plugger.common;
 
 import org.lwjgl.opengl.Display;
+import org.lwjgl.opengl.GL11;
+import org.newdawn.slick.Color;
 
 import plugger.Player.Player;
 import plugger.common.GameLoop;
 import plugger.world.World;
 
 public class GameLoop{
-	private final int maxFrameRate = 50;
-	
-	private int frames=0;
-	static int fps = 0;
-	static int FpsRate=60;
-	static int tick = 0;
-	static int tickRate = 60;
-	static int ticksPs = 0;
-	static long secondStart = System.currentTimeMillis();
-	static long secondStart2 = System.currentTimeMillis();
-	static long tickStart = System.currentTimeMillis();
-	static float x=0;
+	public int fpsN = 0,FpsRate=60, tickRate = 60, tpsN = 0, fps=0, tps = 0;
+	private long secondStart = System.currentTimeMillis();
+	private long secondStart2 = System.currentTimeMillis();
+	private long tickStart = System.currentTimeMillis();
 	public static Drawer draw = new Drawer();
 	public static World world = new World();
+	public static GameLoop gameloop = new GameLoop();
 	
 	public static void start(){
+		world.player.loadHud();
 		world.LoadWorldFromCode();
-		GameLoop.gameloop();
+		draw.initT();
+		gameloop.gameloop();
+		
 	}
 	
 	/**Main game loop */
-	public static void gameloop() {
+	public void gameloop() {
 		
 		
 		/**
@@ -41,23 +39,22 @@ public class GameLoop{
 					//update();
 					
 					try {
-						Thread.sleep(5);
+						Thread.sleep(1);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
 					/**TICKER*/
 					if(tickStart+1000/tickRate<=System.currentTimeMillis()){
 						tickStart= System.currentTimeMillis();
-						tickStart= System.currentTimeMillis();
 						updateTick();
-						ticksPs+=1;
+						tpsN+=1;
 					}
 					
 					
 					/**FRAME UPDATER*/
 					if(secondStart2+1000/FpsRate<=System.currentTimeMillis()){
 						secondStart2= System.currentTimeMillis();
-						fps++;
+						fpsN++;
 						updateFrame();
 						
 					}
@@ -65,7 +62,9 @@ public class GameLoop{
 					if(secondStart+1000<=System.currentTimeMillis()){
 						secondStart= System.currentTimeMillis();
 						updateESO();
-						ticksPs=0;fps=0;
+						tps=tpsN;fps=fpsN;
+						tpsN=0;fpsN=0;
+						
 					}
 			}
 		}
@@ -74,32 +73,41 @@ public class GameLoop{
 	}
 	
 	/**EVERY TICK OPERATIONS*/
-	private static void updateTick(){
+	private void updateTick(){
 		world.player.Input();
 		System.gc();
 	}
 	/**EVERY FRAME OPERATIONS*/
-	private static void updateFrame(){
+	private void updateFrame(){
+		
+		GL11.glEnable(GL11.GL_DEPTH_TEST);
+		GL11.glMatrixMode(GL11.GL_MODELVIEW);
 		draw.draw();
+		GL11.glMatrixMode(GL11.GL_PROJECTION);
+		GL11.glMatrixMode(GL11.GL_MODELVIEW);
+		GL11.glDisable(GL11.GL_DEPTH_TEST);
+		draw.renderText();
+		
 		Display.update();
 		System.gc();
 	}
 	/**EVERY SECOND OPERATIONS*/
-	private static void updateESO(){
-		System.out.println("TickRatePS:"+ticksPs);
-		System.out.println("TickRate:"+tickRate+" FPS:"+fps);
+	private void updateESO(){
+		//ystem.out.println("TickRatePS:"+ticksPs);
+		System.out.println("TPS:"+tpsN+" FPS:"+fpsN);
 		//System.out.println("FpsRate:"+FpsRate);*/
 	}
 
-	public static void cleanUp() {
+	public void cleanUp() {
 		draw.cleanUp();
 	}
-
 	
+	public int tps(){
+		return tps;
+	}
 	
-	
-	
-	
-	
+	public int fps(){
+		return fps;
+	}
 	
 }

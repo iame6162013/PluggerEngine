@@ -57,4 +57,8 @@ public enum Element {
     public double getMeltingPoint() {
         return meltingPoint;
     }
+
+	public Byte getGroup() {
+		return group;
+	}
 }

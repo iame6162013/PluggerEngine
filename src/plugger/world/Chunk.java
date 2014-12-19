@@ -1,17 +1,13 @@
 package plugger.world;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import org.lwjgl.util.vector.Vector3f;
 
-import plugger.Element.Element;
-import plugger.Element.Elements;
 import plugger.Entity.Entity;
 import plugger.common.GameLoop;
 import plugger.models.TexturedModel;
@@ -20,45 +16,29 @@ public class Chunk {
 	private int CHUNK;
     
 	private static int amount=0;
-    private Map<TexturedModel,List<Entity>> entities = new LinkedHashMap<TexturedModel,List<Entity>>();
+    private List<Entity> entities = new LinkedList<Entity>();
     
     public Chunk(int number){
     	this.CHUNK=number;
     }
     
     public void addBlock(Entity entity){
-    	TexturedModel entityModel = entity.getModel();
-    	List<Entity> batch = entities.get(entityModel);
-    	if(batch!=null){
-			batch.add(entity);
-		}else{
-			List<Entity> newBatch = new ArrayList<Entity>();
-			newBatch.add(entity);
-			entities.put(entityModel, newBatch);
-		}
-    	GameLoop.draw.addEntityFromWorld(0, amount);
+    	entities.add(entity);
+    	GameLoop.draw.addEntityFromWorld(CHUNK, amount);
     	amount++;
     }
     
     public void changePosBlock(int numb,Vector3f vector){
     	GameLoop.draw.removeEntityFromWorld(numb);int j=0;
-    	for (Map.Entry<TexturedModel,List<Entity>> entry: entities.entrySet()){
-    		if(j==numb){
-    			entry.getValue().get(0).setPosition(vector);
-    		}
-    		j++;
-    	}
-    	GameLoop.draw.addEntityFromWorld(0, numb);
+    	entities.get(numb).setPosition(vector);
+    	GameLoop.draw.addEntityFromWorld(CHUNK, numb);
     }
     
     public String getId(int numb){
-    	int j=0;
-    	for (Map.Entry<TexturedModel,List<Entity>> entry: entities.entrySet()){
-    		if(j==numb){
-    			String pos = entry.getValue().get(0).getId();
-    			return pos;
-    		}
-    		j++;
+    	try{
+    		return entities.get(numb).getId();
+    	}catch(Exception e){
+    		e.printStackTrace();
     	}
     	System.out.println("Returned null to get position from entity"+numb);
     	return null;
@@ -70,27 +50,30 @@ public class Chunk {
     }
     
     public Vector3f getPos(int numb){
-    	int j=0;Vector3f pos;
-    	for (Map.Entry<TexturedModel,List<Entity>> entry: entities.entrySet()){
-    		if(j==numb){
-    			pos = entry.getValue().get(0).getPosition();
-    			return pos;
-    			
-    		}
-    		j++;
+    	try{
+    		return entities.get(numb).getPosition();
+    	}catch(Exception e){
+    		e.printStackTrace();
     	}
     	System.out.println("Returned null to get position from entity"+numb);
     	return null;
     }
 	
+    public int getWeight(int numb){
+    	try{
+    		return entities.get(numb).getWeihgt();
+    	}catch(Exception e){
+    		e.printStackTrace();
+    	}
+    	System.out.println("Returned null to get weight from entity"+numb);
+    	return 0;
+    }
+    
 	public TexturedModel getModel(int numb){
-		int j=0;
-		for (Map.Entry<TexturedModel,List<Entity>> entry: entities.entrySet()){
-    		if(j==numb){
-    			TexturedModel TM = entry.getKey();
-    			return TM;
-    		}
-    		j++;
+		try{
+    		return entities.get(numb).getModel();
+    	}catch(Exception e){
+    		e.printStackTrace();
     	}
     	System.out.println("Returned null to get model from entity"+numb);
 		return null;
