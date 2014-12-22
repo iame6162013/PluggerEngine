@@ -18,8 +18,8 @@ import plugger.util.FontUtil;
 
 public class Drawer{
 	private int amountEntities;
-	List<Entity> worldEntities = new ArrayList<Entity>();
-	List<Entity> extraEntities = new ArrayList<Entity>();
+	List<Entity> worldEntities = new ArrayList<>();
+	List<Entity> extraEntities = new ArrayList<>();
 	Light light;
 	public Camera camera;
 	public Loader loader = new Loader();
@@ -107,7 +107,7 @@ public class Drawer{
 	public void renderText(){
 		GameRegistry.UpdateHudMess();
 		for (int pointer=0;pointer<GameRegistry.amountHudMesh; pointer++){
-				fUtil.drawString(GameRegistry.hudMesh.get(pointer), 10, 15+pointer*15);
+			fUtil.drawString(GameRegistry.hudMesh.get(pointer), 10, 15+pointer*2*15);
 		}
 	}
 	

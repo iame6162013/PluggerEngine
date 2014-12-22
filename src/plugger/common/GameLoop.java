@@ -75,7 +75,6 @@ public class GameLoop{
 	/**EVERY TICK OPERATIONS*/
 	private void updateTick(){
 		world.player.Input();
-		System.gc();
 	}
 	/**EVERY FRAME OPERATIONS*/
 	private void updateFrame(){
@@ -89,13 +88,10 @@ public class GameLoop{
 		draw.renderText();
 		
 		Display.update();
-		System.gc();
 	}
 	/**EVERY SECOND OPERATIONS*/
 	private void updateESO(){
-		//ystem.out.println("TickRatePS:"+ticksPs);
-		System.out.println("TPS:"+tpsN+" FPS:"+fpsN);
-		//System.out.println("FpsRate:"+FpsRate);*/
+		//System.out.println("TPS:"+tpsN+" FPS:"+fpsN);
 	}
 
 	public void cleanUp() {

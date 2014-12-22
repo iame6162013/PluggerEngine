@@ -3,7 +3,8 @@ package plugger.common;
 import java.lang.reflect.Method;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
+
+import org.lwjgl.opengl.Display;
 
 public class GameRegistry {
 	private static List<Byte> update = new LinkedList<Byte>();
@@ -12,7 +13,7 @@ public class GameRegistry {
 	//Last thing
 	private static List<Class<?>> ClassPath=new LinkedList<Class<?>>();
 	private static List<String> ClassPathOBJECT=new LinkedList<String>();
-	
+	private static List<Object> instance= new LinkedList<>();
 	
 	
 	public static int amountHudMesh = 0;
@@ -25,17 +26,16 @@ public class GameRegistry {
 		for(int i=0;i<amountHudMesh;i++){
 			try {
 				switch (update.get(i)){
+				
 				case 0:nonUpdators++;
 					break;
 				case 1:hudMesh.add(i,HudMessBase.get(i-nonUpdators)+ClassPath.get(i-nonUpdators).getField(ClassPathOBJECT.get(i-nonUpdators)).toString());
 					break;
 				case 2:
-					String j;
-					Class<?> c = j.getClass();
 					Method m = ClassPath.get(i-nonUpdators).getDeclaredMethod(ClassPathOBJECT.get(i-nonUpdators));
-					Object obj = GameLoop.world.player;//ClassPath.get(i-nonUpdators).newInstance();
+					Object obj = instance.get(i-nonUpdators);
 					Integer out=(Integer) m.invoke(obj);
-					hudMesh.add(i,HudMessBase.get(i-nonUpdators)+out);
+					hudMesh.set(i,HudMessBase.get(i-nonUpdators)+out);
 					break;
 				default :System.err.print("wrong update number in hudmesh"+i);
 					break;
@@ -49,7 +49,7 @@ public class GameRegistry {
 	 */
 	public static void addHudMess(String mess) {
 		if(mess!= null){
-			hudMesh.add(mess);
+			hudMesh.add(hudMesh.size()+mess);
 			update.add((byte) 0);
 			amountHudMesh++;
 		}else{
@@ -81,17 +81,18 @@ public class GameRegistry {
 	 * add updating METHOD to the hud
 	 *(for fps,position,etc)
 	 */
-	public static void addHudMess2(String mess,Class<?>  Classpath, String ClassPathobj){
+	public static void addHudMess2(String mess,Class<?>  Classpath, String ClassPathobj, Object inst){
 		if(mess!= null){
 			try {
 				ClassPath.add(Classpath);
 				ClassPathOBJECT.add(ClassPathobj);
-				hudMesh.add(" ");
-				HudMessBase.add(mess);
+				instance.add(inst);
+				HudMessBase.add(hudMesh.size()+mess);
+				hudMesh.add(hudMesh.size()+"A");
 				update.add((byte) 2);
 				amountHudMesh++;
 			} catch (Exception e) {
-				//System.out.println(ClassPath.get(amountHudMesh)+"_"+ClassPathOBJECT.get(amountHudMesh)+"_"+amountHudMesh);
+				System.out.println(ClassPath.get(amountHudMesh)+"_"+ClassPathOBJECT.get(amountHudMesh)+"_"+amountHudMesh);
 				e.printStackTrace();
 			}
 		}else{

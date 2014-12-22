@@ -1,6 +1,7 @@
 package plugger.Player;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.lwjgl.input.Keyboard;
@@ -15,6 +16,8 @@ import plugger.models.TexturedModel;
 public class Player extends Entity{
 	
 	List<Object> obj = new ArrayList<Object>();
+	int weight=70;
+	
 	
 	public Player(String id, TexturedModel model, Vector3f position,float rotX, float rotY, float rotZ, int weight) {
 		super(id, model, position, rotX, rotY, rotZ, weight);
@@ -30,7 +33,7 @@ public class Player extends Entity{
 	}
 	
 	public int getWeight(){
-		return 20;
+		return weight;
 	}
 	
 	public void Input() {
@@ -66,9 +69,10 @@ public class Player extends Entity{
 
 	public void loadHud() {
 		GameRegistry.addHudMess("This is the games hud here will stats be displayed");
-		GameRegistry.addHudMess2("TPS: ",GameLoop.class,"tps");
-		GameRegistry.addHudMess2("FPS: ",GameLoop.class,"fps");
-		GameRegistry.addHudMess2("Weight: ",Player.class,"getWeight");
+		GameRegistry.addHudMess2("TPS: ",GameLoop.class,"tps", GameLoop.gameloop);
+		GameRegistry.addHudMess2("FPS: ",GameLoop.class,"fps", GameLoop.gameloop);
+		GameRegistry.addHudMess2("Weight: ", Player.class, "getWeight", GameLoop.gameloop.world.player);
+		GameRegistry.addHudMess("End");
 	}
 	
 	
